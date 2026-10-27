@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>冷笑话收集站</title>
-<meta name="description" content="一张张贴纸，每张背后藏一个冷笑话或双关。先撕开贴纸，再揭谜底。">
+<meta name="description" content="一座积木山被独角兽坐塌了，散落的每块积木背后藏一个冷笑话。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=ZCOOL+KuaiLe&family=Nunito:wght@600;800&display=swap">
 <style>
@@ -20,78 +20,40 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-
-body{
-  font-family:var(--body);color:var(--ink);
-  background-color:var(--lime);
-  background-image:
-    linear-gradient(rgba(20,20,20,.07) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(20,20,20,.07) 1px,transparent 1px);
-  background-size:36px 36px;
-  min-height:100vh;overflow-x:hidden;
-}
+body{font-family:var(--body);color:var(--ink);background-color:var(--lime);
+  background-image:linear-gradient(rgba(20,20,20,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,20,.07) 1px,transparent 1px);
+  background-size:36px 36px;min-height:100vh;overflow-x:hidden;padding-bottom:110px}
 img{display:block}
 
-/* ---------- 背景：大色块 + 漂浮贴纸 ---------- */
-.blob{position:fixed;z-index:0;border-radius:50%;pointer-events:none;opacity:.55;animation:drift 18s ease-in-out infinite}
-.blob.b1{width:52vw;height:52vw;left:-18vw;top:-14vw;background:var(--neon);animation-delay:-4s}
-.blob.b2{width:38vw;height:38vw;right:-12vw;top:26vh;background:var(--sky);animation-delay:-9s}
-.blob.b3{width:34vw;height:34vw;left:22vw;bottom:-18vw;background:#fff;animation-delay:-14s}
-@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(2vw,-2vw)}}
+/* ---------- 场地 ---------- */
+.field{position:relative;margin:0 auto;max-width:1280px;min-height:100vh}
+.field.flow{display:flex;flex-direction:column;align-items:center;gap:26px;padding:20px 16px 40px}
+.hero{position:absolute;z-index:3;filter:drop-shadow(8px 8px 0 rgba(20,20,20,.9));pointer-events:none;transform-origin:50% 100%}
+.field.flow .hero{position:static;width:min(60vw,320px);margin-top:10px}
 
-.deco{position:fixed;z-index:0;pointer-events:none;animation:bob 6s ease-in-out infinite}
-.deco img{width:100%;height:auto}
-.deco.d1{top:38vh;left:1vw;width:96px;animation-delay:-1s}
-.deco.d2{top:16vh;right:5vw;width:70px;animation-delay:-3s}
-.deco.d3{bottom:14vh;left:4vw;width:120px;animation-delay:-2s}
-.deco.d4{top:52vh;left:1vw;width:80px;animation-delay:-5s}
-.deco.d5{top:46vh;right:2vw;width:64px;animation-delay:-4s}
-.deco.d6{top:63vh;right:3vw;width:58px}
-@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-14px) rotate(5deg)}}
-/* 角落里探头的小独角兽，跟着滚动 */
-.peek{position:fixed;right:18px;bottom:-12px;width:150px;z-index:2;pointer-events:none;animation:peek 7s ease-in-out infinite}
-@keyframes peek{0%,20%,100%{transform:translateY(60%)}40%,80%{transform:translateY(0)}}
-@media (max-width:900px){.deco,.peek{display:none}.blob{opacity:.4}}
+/* 彩虹标题 */
+.rainbow{position:absolute;left:0;top:0;width:580px;z-index:2;pointer-events:none}
+.rainbow svg{width:100%;height:auto;overflow:visible}
+.rainbow .en{position:absolute;left:150px;bottom:52px;font-family:var(--display);font-size:22px;letter-spacing:.08em;background:var(--neon);padding:6px 14px;border:3px solid var(--ink);border-radius:999px;box-shadow:var(--shadow-sm);transform:rotate(-2deg);pointer-events:auto}
+.rainbow .tagline{position:absolute;left:92px;bottom:-24px;background:var(--cream);border:3px solid var(--ink);border-radius:16px;box-shadow:var(--shadow-sm);padding:9px 14px;font-weight:800;font-size:14px;width:max-content;max-width:380px;transform:rotate(1.5deg);pointer-events:auto}
+.rainbow .tagline b{background:var(--pink);padding:0 6px;border-radius:6px}
+.field.flow .rainbow{position:static;width:min(92vw,520px);margin-bottom:40px}
+.field.flow .rainbow .tagline{bottom:-30px}
 
-/* ---------- 顶部 ---------- */
-.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:30px 20px 90px}
-header.banner{position:relative;min-height:min(460px,52vw);border:4px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;background:#cdef9c url("img/scene.jpg") center 40%/cover no-repeat;display:flex;align-items:flex-end;margin-bottom:14px;animation:pop .6s var(--bounce) both}
-.titlebox{position:relative;padding:24px 26px 26px}
-h1{position:relative;margin:0;font-family:var(--zh);font-weight:400;font-size:clamp(46px,7.5vw,92px);line-height:1;letter-spacing:.02em;transform:rotate(-2deg);display:inline-block}
-h1 .ch{display:inline-block;color:#fff;-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:6px 6px 0 var(--ink);animation:drop .7s var(--bounce) both;animation-delay:calc(var(--n) * 70ms)}
-h1 .ch:nth-child(2n){color:var(--neon)}h1 .ch:nth-child(3n){color:var(--pink)}h1 .ch:nth-child(5n){color:var(--mint)}
-@keyframes drop{from{opacity:0;transform:translateY(-40px) rotate(-10deg) scale(.6)}to{opacity:1}}
-h1 .en{display:block;font-family:var(--display);font-size:.4em;color:var(--ink);background:var(--neon);padding:4px 12px;border:3px solid var(--ink);border-radius:999px;box-shadow:var(--shadow-sm);width:max-content;margin-top:14px;transform:rotate(1.5deg);letter-spacing:.08em}
-.tagline{margin-top:14px;background:var(--cream);border:3px solid var(--ink);border-radius:16px;box-shadow:var(--shadow-sm);padding:10px 16px;font-weight:800;max-width:380px;transform:rotate(1deg)}
-.tagline b{background:var(--pink);padding:0 6px;border-radius:6px}
-@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
-@media (max-width:640px){header.banner{min-height:300px;background-position:60% 40%}.titlebox{padding:16px}}
+/* 散落的积木块 */
+.block{position:absolute;z-index:1;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);pointer-events:none}
+.block.sq{border-radius:8px}
+.block.ci{border-radius:50%}
+.block.tri{border:0;box-shadow:none;background:none}
+.block.tri svg{width:100%;height:100%;overflow:visible}
+.field.flow .block{display:none}
 
-/* ---------- 筛选条 ---------- */
-.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:26px 0 26px}
-.chip{appearance:none;cursor:pointer;font:800 15px/1 var(--body);color:var(--ink);background:var(--cream);border:3px solid var(--ink);border-radius:999px;padding:10px 16px;box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s,background .15s}
-.chip:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
-.chip:active,.chip.on{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
-.chip.on{background:var(--green)}
-.chip[data-k="lang"].on{background:var(--neon)}
-.chip.shuffle{background:var(--purple);margin-left:auto}
-.chip.shuffle:hover{background:var(--pink)}
-.bar .sep{width:3px;height:26px;background:var(--ink);border-radius:2px;margin:0 4px}
-
-/* ---------- 错落的卡片墙 ---------- */
-.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));grid-auto-flow:dense;gap:24px;align-items:stretch}
-.card{position:relative;background:var(--cream);border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);padding:22px 20px 18px;min-height:210px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;transform:rotate(var(--tilt,0deg));transition:transform .2s;animation:pop .5s var(--bounce) both;animation-delay:calc(var(--i,0) * 40ms)}
-.card:hover{transform:rotate(var(--tilt,0deg)) translate(-2px,-4px)}
-.card.small{min-height:160px;padding:18px 16px 14px}
-.card.tall{min-height:330px}
-.card.wide{min-height:190px}
-@media (min-width:640px){.card.wide{grid-column:span 2}}
-@keyframes pop{from{opacity:0;transform:scale(.6) rotate(var(--tilt,0deg))}to{opacity:1}}
-
-/* 穿插的贴纸格子 */
-.tile{display:flex;align-items:center;justify-content:center;min-height:140px;pointer-events:none;animation:pop .5s var(--bounce) both;animation-delay:calc(var(--i,0) * 40ms)}
-.tile img{width:min(70%,180px);filter:drop-shadow(5px 5px 0 rgba(20,20,20,.85));transform:rotate(var(--tilt,0deg));animation:bob 7s ease-in-out infinite;animation-delay:calc(var(--i,0) * -1s)}
-
+/* ---------- 卡片 ---------- */
+.card{position:absolute;z-index:4;background:var(--cream);border:3px solid var(--ink);border-radius:var(--r,22px);box-shadow:var(--shadow);padding:26px 24px 22px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;transform:rotate(var(--tilt,0deg));transition:box-shadow .2s;will-change:transform}
+.card:hover{box-shadow:8px 8px 0 var(--ink)}
+.card:not(.open){overflow:hidden}
+.card.open{cursor:default;height:auto!important;min-height:var(--h);z-index:20}
+.field.flow .card{position:static;width:min(100%,420px)!important;height:auto!important;min-height:var(--h)}
 .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;font-weight:800;margin-bottom:12px}
 .pill{border:2.5px solid var(--ink);border-radius:999px;padding:4px 9px;background:#fff;box-shadow:2px 2px 0 var(--ink);line-height:1}
 .pill.cc{font-family:ui-monospace,Consolas,monospace;letter-spacing:.08em;background:var(--sky)}
@@ -99,11 +61,9 @@ h1 .en{display:block;font-family:var(--display);font-size:.4em;color:var(--ink);
 .date{margin-left:auto;font-family:ui-monospace,Consolas,monospace;font-size:11px;opacity:.65}
 .setup{font-size:17px;line-height:1.55;white-space:pre-line;font-weight:700;margin:0}
 .zh .setup{font-size:18px}
-.wide .setup{font-size:20px}
-.tall .setup{font-size:19px}
 
-/* 谜底：先糊着，再点一次才揭晓 */
-.punchbox{position:relative;margin-top:14px;border:3px solid var(--ink);border-radius:14px;background:#fff;padding:12px 14px;cursor:pointer;overflow:visible;transition:background .3s}
+/* 谜底 */
+.punchbox{position:relative;margin-top:14px;border:3px solid var(--ink);border-radius:14px;background:#fff;padding:12px 14px;cursor:pointer;transition:background .3s}
 .punch{margin:0;font-size:18px;line-height:1.5;font-weight:800;white-space:pre-line;filter:blur(7px);transform:scale(.92);transition:filter .5s,transform .5s var(--bounce);user-select:none}
 .zh .punch{font-size:19px}
 .tape{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);background:var(--neon);border:3px solid var(--ink);border-radius:8px;padding:7px 14px;font:800 14px/1 var(--body);box-shadow:3px 3px 0 var(--ink);white-space:nowrap;transition:transform .55s var(--bounce),opacity .4s}
@@ -115,9 +75,14 @@ h1 .en{display:block;font-family:var(--display);font-size:.4em;color:var(--ink);
 .punchbox.shown{background:var(--neon);cursor:default}
 .punchbox.shown .punch{filter:blur(0);transform:scale(1);user-select:auto}
 .punchbox.shown .tape{transform:translate(-50%,-50%) translateY(-70px) rotate(25deg) scale(.6);opacity:0;pointer-events:none}
-.spark{position:absolute;left:50%;top:50%;width:14px;height:14px;pointer-events:none;animation:spark .8s ease-out forwards}
+.spark{position:absolute;left:50%;top:50%;width:14px;height:14px;pointer-events:none;animation:spark .8s ease-out forwards;z-index:9}
 .spark svg{width:100%;height:100%;overflow:visible}
 @keyframes spark{from{transform:translate(-50%,-50%) scale(.3)}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.1) rotate(180deg);opacity:0}}
+.note{margin:12px 0 0;font-size:13px;line-height:1.5;background:#fff;border:2.5px dashed var(--ink);border-radius:12px;padding:8px 10px}
+.note::before{content:"笑点 → ";font-weight:800}
+.punchbox:not(.shown) + .note{display:none}
+
+/* 投币 */
 .like{display:flex;align-items:center;gap:10px;margin-top:14px;position:relative}
 .coin{appearance:none;border:0;background:none;padding:0;width:44px;height:44px;position:relative;transition:transform .15s var(--bounce)}
 .coin svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(3px 3px 0 var(--ink))}
@@ -128,7 +93,6 @@ h1 .en{display:block;font-family:var(--display);font-size:.4em;color:var(--ink);
 .liketxt{font-size:13px;font-weight:800;opacity:.8}
 .likecount{font-family:var(--display);font-size:22px;line-height:1;background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:5px 11px;box-shadow:2px 2px 0 var(--ink);min-width:48px;text-align:center}
 .likecount.up{animation:bump .35s var(--bounce)}
-/* 投币口：从卡片右下角冒出来 */
 .slot{position:absolute;right:14px;bottom:-16px;width:118px;height:62px;background:var(--pink);border:3px solid var(--ink);border-radius:16px;box-shadow:var(--shadow-sm);transform:scale(0) rotate(8deg);transform-origin:bottom right;transition:transform .45s var(--bounce);z-index:5;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
 .slot .slit{width:48px;height:10px;background:var(--ink);border-radius:999px;box-shadow:inset 0 3px 0 rgba(255,255,255,.25)}
 .slot .lbl{font:800 11px/1 var(--body);background:var(--cream);border:2px solid var(--ink);border-radius:999px;padding:3px 8px}
@@ -139,63 +103,63 @@ h1 .en{display:block;font-family:var(--display);font-size:.4em;color:var(--ink);
 .flycoin svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(2px 2px 0 var(--ink))}
 .plusone{position:absolute;z-index:7;pointer-events:none;font-family:var(--display);font-size:26px;color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink);animation:rise 1s ease-out forwards}
 @keyframes rise{from{transform:translate(-50%,0) scale(.6);opacity:0}30%{opacity:1}to{transform:translate(-50%,-70px) scale(1.2);opacity:0}}
-.cover .badge{position:absolute;right:12px;bottom:12px;background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:4px 9px;font:800 12px/1 var(--body);box-shadow:2px 2px 0 var(--ink);display:flex;align-items:center;gap:4px;z-index:2}
-.cover .badge svg{width:16px;height:16px}
-.note{margin:12px 0 0;font-size:13px;line-height:1.5;background:#fff;border:2.5px dashed var(--ink);border-radius:12px;padding:8px 10px}
-.note::before{content:"笑点 → ";font-weight:800}
-.punchbox:not(.shown) + .note{display:none}
 
-/* ---------- 封面贴纸（四种撕法） ---------- */
-.cover{position:absolute;inset:-3px;z-index:3;border:3px solid var(--ink);border-radius:22px;background:var(--c,var(--neon));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;transition:transform .55s var(--bounce),opacity .4s;will-change:transform}
+/* ---------- 封面 ---------- */
+.cover{position:absolute;inset:-3px;z-index:3;border:3px solid var(--ink);border-radius:var(--r,22px);background:var(--c,var(--neon));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;transition:transform .55s var(--bounce),opacity .4s;will-change:transform}
 .cover.dots{background-image:radial-gradient(rgba(20,20,20,.18) 1.6px,transparent 1.6px);background-size:14px 14px}
+.cover.dots2{background-image:radial-gradient(rgba(255,255,255,.55) 3px,transparent 3.5px);background-size:26px 26px}
 .cover.stripes{background-image:repeating-linear-gradient(-45deg,rgba(255,255,255,.35) 0 12px,transparent 12px 24px)}
+.cover.hlines{background-image:repeating-linear-gradient(0deg,rgba(20,20,20,.16) 0 3px,transparent 3px 16px)}
+.cover.grid{background-image:linear-gradient(rgba(20,20,20,.14) 2px,transparent 2px),linear-gradient(90deg,rgba(20,20,20,.14) 2px,transparent 2px);background-size:22px 22px}
 .cover.checks{background-image:radial-gradient(rgba(255,255,255,.5) 28%,transparent 30%);background-size:34px 34px}
-.cover.scene{background:url("img/scene.jpg") var(--px,50%) var(--py,50%)/var(--pz,220%) no-repeat;justify-content:flex-end;padding-bottom:16px}
-.cover.scene.alt{background-image:url("img/scene2.jpg")}
-.cover.scene .hint{background:var(--neon)}
-.strip{grid-column:1/-1;height:200px;border:3px solid var(--ink);border-radius:22px;box-shadow:var(--shadow);background:url("img/scene.jpg") var(--px,50%) var(--py,50%)/cover no-repeat;transform:rotate(var(--tilt,0deg));animation:pop .5s var(--bounce) both;animation-delay:calc(var(--i,0) * 40ms)}
-.strip.alt{background-image:url("img/scene2.jpg")}
+.cover.pic{background-size:cover;background-position:center;justify-content:flex-end;padding-bottom:16px}
+.cover.pic .hint{background:var(--neon)}
 .cover .big{font-family:var(--display);font-size:66px;line-height:1;color:#fff;-webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
-.cover .uni{height:min(150px,52%);width:auto;max-width:60%;filter:drop-shadow(4px 4px 0 rgba(20,20,20,.85));transition:transform .3s}
-.cover .uni.side{position:absolute;right:-4%;bottom:-6%;height:min(170px,70%);width:auto;max-width:55%;transform:rotate(-8deg)}
+.cover .uni{height:min(150px,52%);width:auto;max-width:60%;filter:drop-shadow(4px 4px 0 rgba(20,20,20,.85))}
 .card:hover .cover .uni{animation:wiggle .7s ease-in-out}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
 .cover .hint{font-weight:800;font-size:13px;background:var(--cream);border:2.5px solid var(--ink);border-radius:999px;padding:5px 11px;box-shadow:2px 2px 0 var(--ink);position:relative;z-index:1}
-.cover .corner{position:absolute;top:10px;left:14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;font-weight:800;letter-spacing:.1em}
-.cover .star{position:absolute;right:12px;top:10px;width:26px}
-.card.open{cursor:default}
+.card.blob{padding:30px 30px 26px}
+.card.blob .cover .corner{left:50%;transform:translateX(-50%);top:14px}
+.cover .corner{position:absolute;top:12px;left:16px;font-family:ui-monospace,Consolas,monospace;font-size:11px;font-weight:800;letter-spacing:.1em}
 .card.open .cover{pointer-events:none}
-/* 1 撕掉 */
 .card.peel .cover{transform-origin:70% 30%}
 .card.peel.open .cover{transform:rotate(-16deg) translate(-115%,30%);opacity:0}
-/* 2 翻面 */
-.card.flip{transform-style:preserve-3d;transition:transform .7s var(--bounce)}
+.card.flip{transform-style:preserve-3d}
 .card.flip .cover{backface-visibility:hidden;transition:none}
 .card.flip .inner{backface-visibility:hidden;transform:rotateY(180deg)}
-.card.flip.open{transform:rotate(var(--tilt,0deg)) rotateY(180deg)}
-.card.flip.open:hover{transform:rotate(var(--tilt,0deg)) rotateY(180deg) translate(-2px,-4px)}
-/* 3 卷帘 */
+.card.flip.open{transform:rotate(var(--tilt,0deg)) rotateY(180deg);transition:transform .7s var(--bounce)}
 .card.curtain{overflow:hidden}
 .card.curtain.open .cover{transform:translateY(-104%) scaleY(.6);opacity:.6}
-/* 4 缩成小贴纸 */
 .card.pop.open .cover{transform:scale(0) rotate(40deg);opacity:0}
 
-/* 随机弹窗 */
+/* ---------- 底部筛选条 ---------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--cream);border-top:3px solid var(--ink);padding:10px 16px;display:flex;gap:10px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.dock::-webkit-scrollbar{display:none}
+.chip{appearance:none;cursor:pointer;font:800 14px/1 var(--body);color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:999px;padding:9px 14px;box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s,background .15s;white-space:nowrap;flex:0 0 auto}
+.chip:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.chip:active,.chip.on{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.chip.on{background:var(--green)}
+.chip[data-k="lang"].on{background:var(--neon)}
+.chip.shuffle{background:var(--purple);margin-left:auto}
+.chip.shuffle:hover{background:var(--pink)}
+.chip.again2{background:var(--orange)}
+.dock .sep{width:3px;height:26px;background:var(--ink);border-radius:2px;margin:0 2px;flex:0 0 auto}
+.count{font-weight:800;font-size:13px;white-space:nowrap;flex:0 0 auto}
+.dock a{color:var(--ink);font-weight:800;font-size:13px;white-space:nowrap;flex:0 0 auto}
+
+/* 弹窗 */
 .modal{position:fixed;inset:0;z-index:50;background:rgba(20,20,20,.55);display:none;align-items:center;justify-content:center;padding:20px}
 .modal.show{display:flex}
-.modal .box{background:var(--cream);border:4px solid var(--ink);border-radius:28px;box-shadow:10px 10px 0 var(--ink);max-width:640px;width:100%;padding:34px 30px 26px;position:relative;animation:pop .4s var(--bounce) both}
+.modal .box{background:var(--cream);border:4px solid var(--ink);border-radius:28px;box-shadow:10px 10px 0 var(--ink);max-width:640px;width:100%;padding:34px 30px 26px;position:relative;animation:popin .4s var(--bounce) both}
+@keyframes popin{from{opacity:0;transform:scale(.6)}to{opacity:1}}
 .modal .setup{font-size:24px}
 .modal .punch{font-size:24px}
 .modal .close{position:absolute;top:-18px;right:-18px;width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);background:var(--orange);font:800 22px/1 var(--body);cursor:pointer;box-shadow:var(--shadow-sm)}
-.modal .again{margin-top:20px}
-.modal .muni{position:absolute;left:-60px;bottom:-40px;width:140px;filter:drop-shadow(5px 5px 0 rgba(20,20,20,.85));transform:rotate(-10deg)}
-@media (max-width:640px){.modal .muni{display:none}}
+.modal .again{margin-top:20px;margin-left:0}
+.empty{position:absolute;left:50%;top:60%;transform:translateX(-50%);font-weight:800;font-size:18px;padding:40px;text-align:center}
 
-footer{margin-top:60px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-weight:800;font-size:14px}
-footer a{color:var(--ink);background:var(--mint);border:2.5px solid var(--ink);border-radius:999px;padding:6px 12px;text-decoration:none;box-shadow:2px 2px 0 var(--ink)}
-footer a:hover{background:var(--pink)}
-.count{background:var(--cream);border:2.5px solid var(--ink);border-radius:999px;padding:6px 12px;box-shadow:2px 2px 0 var(--ink)}
-.empty{font-weight:800;font-size:18px;padding:40px;text-align:center;grid-column:1/-1}
-/* 爪子鼠标：默认白爪，可点的东西上变成黄爪。放最后、加 body 前缀，压过前面的 cursor:pointer */
+/* 爪子鼠标 */
 body{cursor:url("img/paw.svg") 6 6, auto}
 body a,body button,body .chip,body .card:not(.open),body .punchbox:not(.shown),body .coin,body .modal .close{cursor:url("img/paw-press.svg") 8 8, pointer}
 body .card.open,body .punchbox.shown{cursor:url("img/paw.svg") 6 6, auto}
@@ -203,37 +167,42 @@ body .card.open,body .punchbox.shown{cursor:url("img/paw.svg") 6 6, auto}
 </head>
 <body>
 
-<div class="blob b1"></div><div class="blob b3"></div>
-<div class="deco d1"><img src="img/deco1.png" alt=""></div>
-<div class="deco d6"><img src="img/deco6.png" alt=""></div>
-<img class="peek" src="img/uni2.png" alt="">
-
-<div class="wrap">
-  <header class="banner">
-    <div class="titlebox">
-      <h1 id="title">冷笑话收集站<span class="en">COLD JOKES &amp; PUNS</span></h1>
-      <div class="tagline">先撕开贴纸看题，再点一下揭<b>谜底</b>。冷到了算你的。</div>
-    </div>
-  </header>
-
-  <div class="bar" id="bar">
-    <button class="chip on" data-k="all">全部</button>
-    <span class="sep"></span>
-    <button class="chip shuffle" id="shuffle">🎲 随机来一条</button>
+<main class="field" id="field">
+  <div class="rainbow" id="rainbow">
+    <svg viewBox="0 0 600 340" aria-label="冷笑话收集站">
+      <defs><path id="arc" d="M 22 330 A 278 278 0 0 1 578 330"/></defs>
+      <g fill="none" stroke-linecap="round">
+        <path d="M 70 330 A 230 230 0 0 1 530 330" stroke="#141414" stroke-width="44"/>
+        <path d="M 70 330 A 230 230 0 0 1 530 330" stroke="#f9a8d4" stroke-width="36"/>
+        <path d="M 108 330 A 192 192 0 0 1 492 330" stroke="#141414" stroke-width="8"/>
+        <path d="M 108 330 A 192 192 0 0 1 492 330" stroke="#e8f500" stroke-width="36"/>
+        <path d="M 146 330 A 154 154 0 0 1 454 330" stroke="#141414" stroke-width="8"/>
+        <path d="M 146 330 A 154 154 0 0 1 454 330" stroke="#5eead4" stroke-width="36"/>
+        <path d="M 184 330 A 116 116 0 0 1 416 330" stroke="#141414" stroke-width="4"/>
+      </g>
+      <text font-family="ZCOOL KuaiLe, Lilita One, Microsoft YaHei, sans-serif" font-size="74" fill="#fff" stroke="#141414" stroke-width="3" paint-order="stroke" letter-spacing="4">
+        <textPath href="#arc" startOffset="50%" text-anchor="middle">冷笑话收集站</textPath>
+      </text>
+      <path d="M 50 110 l6 14 14 6 -14 6 -6 14 -6 -14 -14 -6 14 -6 z" fill="#fff" stroke="#141414" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M 560 150 l5 11 11 5 -11 5 -5 11 -5 -11 -11 -5 11 -5 z" fill="#ff8a3d" stroke="#141414" stroke-width="3" stroke-linejoin="round"/>
+    </svg>
+    <span class="en">COLD JOKES &amp; PUNS</span>
+    <div class="tagline">积木山被独角兽坐塌了。撕开一块看题，再点一下揭<b>谜底</b>。</div>
   </div>
+  <img class="hero" id="hero" src="img/hero.png" alt="毛茸茸的独角兽">
+</main>
 
-  <div class="wall" id="wall"></div>
-
-  <footer>
-    <span class="count" id="count"></span>
-    <a href="https://github.com/joyfuljune/cold-jokes/edit/main/jokes.json" target="_blank" rel="noopener">＋ 在 GitHub 上添一条</a>
-    <a href="https://github.com/joyfuljune/cold-jokes" target="_blank" rel="noopener">源码</a>
-  </footer>
-</div>
+<nav class="dock" id="dock">
+  <button class="chip on" data-k="all">全部</button>
+  <span class="sep"></span>
+  <button class="chip shuffle" id="shuffle">🎲 随机一条</button>
+  <button class="chip again2" id="rescatter">🪄 再塌一次</button>
+  <span class="count" id="count"></span>
+  <a href="https://github.com/joyfuljune/cold-jokes/edit/main/jokes.json" target="_blank" rel="noopener">＋添一条</a>
+</nav>
 
 <div class="modal" id="modal">
   <div class="box">
-    <img class="muni" src="img/uni4.png" alt="">
     <button class="close" id="close" aria-label="关闭">×</button>
     <div id="mbody"></div>
     <button class="chip shuffle again" id="again">🎲 再来一条</button>
@@ -243,175 +212,220 @@ body .card.open,body .punchbox.shown{cursor:url("img/paw.svg") 6 6, auto}
 <script>
 const LANG = {zh:"中文",en:"English",fr:"Français"};
 const COLORS = ["#e8f500","#00e676","#5eead4","#f9a8d4","#b197fc","#ff8a3d","#9adcf9","#fff"];
+const PATTERNS = ["dots","dots2","stripes","hlines","grid","checks"];
 const TOPIC_COLORS = {"动物":"#00e676","食物":"#ff8a3d","科学":"#9adcf9","语言":"#f9a8d4","职业":"#b197fc","日常":"#e8f500","数学":"#5eead4"};
 const EMOJI = {"动物":"🐧","食物":"🍅","科学":"🧪","语言":"💬","职业":"💼","日常":"☕","数学":"📐"};
 const ANIMS = ["peel","flip","curtain","pop"];
-const PATTERNS = ["dots","stripes","checks",""];
-const TILES = ["img/deco4.png","img/deco7.png","img/deco5.png","img/deco3.png","img/deco8.png"];
+/* 六幅场景图，每幅整页只用一次，各占一张大卡 */
+const PICS = [
+  {src:"img/scene.jpg", w:430, h:290},
+  {src:"img/scene2.jpg", w:430, h:290},
+  {src:"img/mid.jpg", w:270, h:400},
+  {src:"img/hallo.jpg", w:430, h:290},
+  {src:"img/hike.jpg", w:340, h:340},
+  {src:"img/hotpot.jpg", w:430, h:290},
+];
+const SIZES = [[210,170],[250,210],[250,210],[230,300],[380,220],[270,230]];
+const COIN_SVG = `<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#e8f500" stroke="#141414" stroke-width="3"/><circle cx="20" cy="20" r="11.5" fill="none" stroke="#141414" stroke-width="2.2" stroke-dasharray="3 3"/><text x="20" y="25" text-anchor="middle" font-family="ZCOOL KuaiLe, Microsoft YaHei, sans-serif" font-size="14" font-weight="700" fill="#141414">冷</text></svg>`;
 
 let jokes = [];
 let filter = {k:"all", v:null};
-/* 投币数存在浏览器本地（GitHub Pages 没有后端） */
-let coins = {};
-try { coins = JSON.parse(localStorage.getItem("coldjokes.coins") || "{}"); } catch(e) { coins = {}; }
-function saveCoins(){ try { localStorage.setItem("coldjokes.coins", JSON.stringify(coins)); } catch(e){} }
-const COIN_SVG = `<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#e8f500" stroke="#141414" stroke-width="3"/><circle cx="20" cy="20" r="11.5" fill="none" stroke="#141414" stroke-width="2.2" stroke-dasharray="3 3"/><text x="20" y="25" text-anchor="middle" font-family="ZCOOL KuaiLe, Microsoft YaHei, sans-serif" font-size="14" font-weight="700" fill="#141414">冷</text></svg>`;
-const wall = document.getElementById("wall");
-const bar = document.getElementById("bar");
+const fake = {};                       // 假投币数：每次打开随机，点一下加一，不存
+const field = document.getElementById("field");
+const hero = document.getElementById("hero");
+const dock = document.getElementById("dock");
 const countEl = document.getElementById("count");
 
+const R = Math.random;
+const rnd = (a,b) => a + R()*(b-a);
+const pick = arr => arr[Math.floor(R()*arr.length)];
+const shuffle = arr => { const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(R()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
-function hash(n, salt=0){ let x = (Math.imul(n|0, 374761393) + Math.imul(salt|0, 668265263) + 982451653) >>> 0; x = Math.imul(x ^ (x >>> 13), 1274126177) >>> 0; x ^= x >>> 16; return (x >>> 0) / 4294967296; }
-function pick(arr, n, salt){ return arr[Math.floor(hash(n, salt) * arr.length)]; }
 function isQuestion(s){ return /[?？]\s*$/.test(s.trim()); }
-
-/* 标题逐字落下 */
-(function(){
-  const h = document.getElementById("title");
-  const en = h.querySelector(".en");
-  const text = h.firstChild.textContent;
-  h.firstChild.remove();
-  [...text].forEach((ch,i) => { const s = document.createElement("span"); s.className="ch"; s.style.setProperty("--n", i); s.textContent = ch; h.insertBefore(s, en); });
-})();
+/* 石头形状：八个随机圆角 */
+function blobRadius(){ const v = () => Math.round(rnd(35,65)); return `${v()}% ${v()}% ${v()}% ${v()}% / ${v()}% ${v()}% ${v()}% ${v()}%`; }
 
 function metaHTML(j){
   const tc = TOPIC_COLORS[j.topic] || "#e8f500";
-  return `<span class="pill cc">${esc(j.country)}</span>
-          <span class="pill">${esc(LANG[j.lang] || j.lang)}</span>
-          <span class="pill topic" style="--topic:${tc}">${EMOJI[j.topic]||"✨"} ${esc(j.topic)}</span>
-          <span class="date">${esc(j.date)}</span>`;
+  return `<span class="pill cc">${esc(j.country)}</span><span class="pill">${esc(LANG[j.lang] || j.lang)}</span><span class="pill topic" style="--topic:${tc}">${EMOJI[j.topic]||"✨"} ${esc(j.topic)}</span><span class="date">${esc(j.date)}</span>`;
 }
-
 function bodyHTML(j){
   const label = isQuestion(j.setup) ? "🫣 揭晓谜底" : "👀 看下一句";
+  if(fake[j.id]==null) fake[j.id] = 3 + Math.floor(R()*300);
   return `<div class="meta">${metaHTML(j)}</div>
     <p class="setup">${esc(j.setup)}</p>
-    <div class="punchbox" data-role="punch"><p class="punch">${esc(j.punch)}</p><span class="tape">${label}</span></div>
+    <div class="punchbox"><p class="punch">${esc(j.punch)}</p><span class="tape">${label}</span></div>
     ${j.note ? `<p class="note">${esc(j.note)}</p>` : ""}
-    <div class="like"><button class="coin" data-id="${j.id}" title="投一枚冷币">${COIN_SVG}</button><span class="liketxt">觉得冷？投个币</span><span class="likecount" data-count="${j.id}">${coins[j.id]||0}</span></div>`;
+    <div class="like"><button class="coin" data-id="${j.id}" title="投一枚冷币">${COIN_SVG}</button><span class="liketxt">觉得冷？投个币</span><span class="likecount" data-count="${j.id}">${fake[j.id]}</span></div>`;
+}
+function coverHTML(j, a){
+  let middle = "", cls = a.pat, style = `--c:${a.color}`;
+  if(a.kind==="pic"){ cls = "pic"; style = `background-image:url('${a.pic.src}')`; }
+  else if(a.kind==="uni") middle = `<img class="uni" src="img/uni${a.uni}.png" alt="">`;
+  else if(a.kind==="emoji") middle = `<span class="big">${EMOJI[j.topic]||"?"}</span>`;
+  else middle = `<span class="big">?</span>`;
+  return `<div class="cover ${cls}" style="${style}"><span class="corner">#${String(j.id).padStart(3,"0")} · ${esc(j.country)}</span>${middle}<span class="hint">${EMOJI[j.topic]||"✨"} ${esc(j.topic)} · 撕开</span></div>`;
 }
 
-/* 给一组卡片分配封面：颜色 / 图案 / 样式 / 独角兽，保证左、上、左上、右上四个邻居都不一样，
-   同一只独角兽在前后一整行里不重复出现 */
-function assignCovers(list, cols){
-  const STYLES = ["q","scene","uni","q","scene","emoji","uniside","scene","q","uni"];
-  const out = [];
-  /* 图标类（独角兽贴纸、主题 emoji）整页每张只出现一次；颜色和底纹只有几种，用滑动窗口隔开 */
-  const win = (i, n) => out.slice(Math.max(0, i-n), i);
-  const usedUni = new Set(), usedEmoji = new Set();
-  let lastAlt = true;
-  list.forEach((j, i) => {
-    const near = win(i, cols+1);
-    const far = win(i, cols*2);
-    const tryPick = (arr, salt, bad) => {
-      const start = Math.floor(hash(j.id, salt) * arr.length);
-      for(let k=0;k<arr.length;k++){ const v = arr[(start+k)%arr.length]; if(!bad(v)) return v; }
-      return arr[start];
-    };
-    const color = tryPick(COLORS, 1, v => near.some(n => n.color===v));
-    const pat = tryPick(PATTERNS, 3, v => win(i,2).some(n => n.pat===v));
-    let style = tryPick(STYLES, 5, v => win(i,cols-1).some(n => n.style===v)
-      || (v.startsWith("uni") && (usedUni.size>=6 || far.some(n => n.style.startsWith("uni"))))
-      || (v==="emoji" && usedEmoji.has(j.topic)));
-    if(style.startsWith("uni") && usedUni.size>=6) style = "q";
-    if(style==="emoji" && usedEmoji.has(j.topic)) style = "q";
-    let uni = 0;
-    if(style.startsWith("uni")){ uni = tryPick([1,2,3,4,5,6], 7, v => usedUni.has(v)); usedUni.add(uni); }
-    if(style==="emoji") usedEmoji.add(j.topic);
-    const alt = style==="scene" ? (lastAlt = !lastAlt) : false;
-    out.push({color, pat, style, uni, alt, px: Math.round(hash(j.id,21)*100), py: Math.round(hash(j.id,22)*100), pz: 180 + Math.round(hash(j.id,23)*120)});
+/* ---------- 分配：图片各一次、贴纸各一次、emoji 每主题一次、底纹+颜色组合不重复 ---------- */
+function assign(list){
+  const n = list.length;
+  const order = shuffle(list.map((_,i)=>i));
+  const out = new Array(n);
+  const picIdx = order.slice(0, Math.min(PICS.length, n));
+  const uniIdx = order.slice(PICS.length, PICS.length+6);
+  const emojiTopics = new Set();
+  const combos = shuffle(PATTERNS.flatMap(p => COLORS.map(c => [p,c])));
+  list.forEach((j,i) => {
+    let a = {pat: combos[i%combos.length][0], color: combos[i%combos.length][1], kind:"q"};
+    const pi = picIdx.indexOf(i);
+    if(pi >= 0){ a.kind="pic"; a.pic = PICS[pi]; }
+    else if(uniIdx.includes(i)){ a.kind="uni"; a.uni = uniIdx.indexOf(i)+1; }
+    else if(!emojiTopics.has(j.topic) && R()<.6){ a.kind="emoji"; emojiTopics.add(j.topic); }
+    out[i] = a;
   });
   return out;
 }
 
-function coverHTML(j, a){
-  const c = a.color;
-  const pat = a.style==="scene" ? `scene ${a.alt?"alt":""}` : a.pat;
-  const style = a.style;
-  const uni = `img/uni${a.uni}.png`;
-  let middle;
-  if(style==="uni") middle = `<img class="uni" src="${uni}" alt="">`;
-  else if(style==="emoji") middle = `<span class="big">${EMOJI[j.topic]||"?"}</span>`;
-  else if(style==="uniside") middle = `<span class="big">?</span><img class="uni side" src="${uni}" alt="">`;
-  else if(style==="scene") middle = ``;
-  else middle = `<span class="big">?</span>`;
-  return `<div class="cover ${pat}" style="--c:${c};--px:${a.px}%;--py:${a.py}%;--pz:${a.pz}%">
-      <span class="corner">#${String(j.id).padStart(3,"0")} · ${esc(j.country)}</span>
-      <svg class="star" viewBox="0 0 100 100"><path d="M50 5 L62 38 L95 50 L62 62 L50 95 L38 62 L5 50 L38 38 Z" fill="#fff" stroke="#141414" stroke-width="6" stroke-linejoin="round"/></svg>
-      ${middle}
-      <span class="hint">${EMOJI[j.topic]||"✨"} ${esc(j.topic)} · 撕开</span>
-      ${coins[j.id] ? `<span class="badge">${COIN_SVG} ×${coins[j.id]}</span>` : ""}
-    </div>`;
+/* ---------- 摆位：随机撒，不许压到彩虹、独角兽和已放的卡 ---------- */
+function overlaps(r, rects, m){ return rects.some(o => r.x < o.x+o.w+m && r.x+r.w+m > o.x && r.y < o.y+o.h+m && r.y+r.h+m > o.y); }
+function scatter(items, W, reserved){
+  const placed = reserved.slice();
+  const area = items.reduce((a,it)=>a+it.w*it.h, 0);
+  let H = Math.max(900, area * 1.7 / W);
+  items.forEach(it => {
+    let best = null;
+    for(let round=0; round<8 && !best; round++){
+      for(let t=0;t<60;t++){
+        const x = rnd(0, Math.max(0, W-it.w)), y = rnd(0, Math.max(0, H-it.h));
+        const r = {x,y,w:it.w,h:it.h};
+        if(!overlaps(r, placed, 12) && (!best || y < best.y)) best = r;
+      }
+      if(!best) H += 160;
+    }
+    if(!best){ best = {x:rnd(0, Math.max(0,W-it.w)), y:H, w:it.w, h:it.h}; H += it.h + 30; }
+    it.x = best.x; it.y = best.y; placed.push(best);
+  });
+  return Math.max(...placed.map(r=>r.y+r.h)) + 60;
 }
 
-function sizeClass(j){
-  const len = j.setup.length;
-  if(len > 60) return "wide";
-  const r = hash(j.id, 11);
-  if(r < .18) return "wide";
-  if(r < .36) return "tall";
-  if(r < .52) return "small";
-  return "";
+let topZ = 0;
+function render(animate){
+  const list = jokes.filter(j => filter.k==="all" || j[filter.k]===filter.v);
+  field.querySelectorAll(".card,.block,.empty").forEach(e=>e.remove());
+  const mobile = window.innerWidth < 720;
+  field.classList.toggle("flow", mobile);
+  const W = field.clientWidth;
+  const covers = assign(list);
+  const items = list.map((j,i) => {
+    const a = covers[i];
+    let w,h;
+    if(a.kind==="pic"){ w=a.pic.w; h=a.pic.h; } else { [w,h] = pick(SIZES); if(j.setup.length>60) { w=Math.max(w,330); h=Math.max(h,230); } }
+    const s = Math.min(1, (W-20)/w); w=Math.round(w*s); h=Math.round(h*s);
+    return {j, a, w, h, tilt: rnd(-9,9), blob: a.kind!=="pic" && R()<.45, anim: pick(ANIMS)};
+  });
+  /* 独角兽落点：第一屏中间偏右 */
+  const hw = Math.min(440, W*.36), hh = hw*1.49;
+  const hx = W*.57 - hw/2, hy = 110;
+  const reserved = mobile ? [] : [{x:0,y:0,w:Math.min(580,W),h:340},{x:hx-10,y:hy-10,w:hw+20,h:hh+20}];
+  /* 散落的积木块 */
+  const blocks = mobile ? [] : Array.from({length:12}, () => { const s = Math.round(rnd(34,70)); return {w:s,h:s,block:true,shape:pick(["sq","sq","ci","tri"]),color:pick(COLORS),tilt:rnd(-30,30)}; });
+  if(!mobile){ const H = scatter(items.concat(blocks), W, reserved); field.style.height = H + "px"; hero.style.width = hw+"px"; hero.style.left = hx+"px"; hero.style.top = hy+"px"; }
+  else { field.style.height = ""; hero.style.cssText = ""; }
+  const cx = hx + hw/2, cy = hy + hh*.7;
+  blocks.forEach((b,k) => {
+    const el = document.createElement("div"); el.className = "block " + b.shape;
+    el.style.cssText = `left:${b.x}px;top:${b.y}px;width:${b.w}px;height:${b.h}px;background:${b.color};transform:rotate(${b.tilt}deg)`;
+    if(b.shape==="tri") el.innerHTML = `<svg viewBox="0 0 100 100"><path d="M50 6 L96 92 L4 92 Z" fill="${b.color}" stroke="#141414" stroke-width="7" stroke-linejoin="round"/></svg>`;
+    field.appendChild(el);
+    if(animate) flyIn(el, cx - b.x - b.w/2, cy - b.y - b.h/2, b.tilt, 900 + k*30);
+  });
+  items.forEach((it,i) => {
+    const j = it.j, el = document.createElement("article");
+    el.className = `card ${it.anim} ${j.lang==="zh"?"zh":""} ${it.blob?"blob":""}`;
+    el.style.setProperty("--tilt", it.tilt.toFixed(2)+"deg");
+    el.style.setProperty("--r", it.blob ? blobRadius() : Math.round(rnd(14,34))+"px");
+    el.style.setProperty("--h", it.h+"px");
+    if(!mobile) el.style.cssText += `left:${it.x}px;top:${it.y}px;width:${it.w}px;height:${it.h}px;`;
+    else el.style.cssText += `min-height:${it.h}px;`;
+    el.innerHTML = `<div class="inner">${bodyHTML(j)}</div>${coverHTML(j, it.a)}`;
+    el.addEventListener("click", e => {
+      const coin = e.target.closest(".coin"); if(coin){ dropCoin(coin); return; }
+      if(!el.classList.contains("open")){ el.classList.add("open"); el.style.zIndex = 20 + (++topZ); return; }
+      const box = e.target.closest(".punchbox"); if(box) revealPunch(box);
+    });
+    field.appendChild(el);
+    if(animate) flyIn(el, mobile ? 0 : cx - it.x - it.w/2, mobile ? -60 : cy - it.y - it.h/2, it.tilt, 950 + i*28 + rnd(0,120));
+  });
+  if(!list.length){ const e = document.createElement("div"); e.className="empty"; e.textContent="这里一块积木都没有。"; field.appendChild(e); }
+  countEl.textContent = `${list.length} / ${jokes.length} 块`;
 }
 
-/* 谜底揭晓：先鼓点抖动，再撕胶带、去模糊、撒星星 */
+/* 从独角兽屁股底下飞出去；飞完把动画摘掉，否则翻面的 3D 会被压平 */
+function flyIn(el, dx, dy, tilt, delay){
+  el.style.opacity = 0;
+  const a = el.animate([
+    {opacity:0, transform:`translate(${dx}px,${dy}px) rotate(${tilt + rnd(-200,200)}deg) scale(.15)`, offset:0},
+    {opacity:1, offset:.25},
+    {opacity:1, transform:`translate(0,0) rotate(${tilt}deg) scale(1)`, offset:1}
+  ], {duration: 900 + rnd(0,400), delay, easing:"cubic-bezier(.2,1.4,.4,1)", fill:"backwards"});
+  a.onfinish = () => { el.style.opacity = ""; };
+}
+function heroDrop(){
+  const a = hero.animate([
+    {transform:"translateY(-120vh) rotate(-8deg)", offset:0},
+    {transform:"translateY(0) rotate(0)", offset:.75, easing:"cubic-bezier(.4,0,1,1)"},
+    {transform:"translateY(0) scale(1.25,.72)", offset:.84},
+    {transform:"translateY(-30px) scale(.92,1.08)", offset:.92},
+    {transform:"translateY(0) scale(1,1)", offset:1}
+  ], {duration:1250, easing:"ease-out", fill:"backwards"});
+  a.onfinish = shake;
+}
+function shake(){
+  document.body.animate([{transform:"translate(0,0)"},{transform:"translate(-6px,4px)"},{transform:"translate(5px,-3px)"},{transform:"translate(-3px,2px)"},{transform:"translate(0,0)"}], {duration:380});
+}
+
+/* 谜底揭晓 */
 function revealPunch(box){
   if(box.classList.contains("shown") || box.classList.contains("drum")) return;
   box.classList.add("drum");
-  setTimeout(() => {
-    box.classList.remove("drum");
-    box.classList.add("shown");
-    burst(box);
-  }, 480);
+  setTimeout(() => { box.classList.remove("drum"); box.classList.add("shown"); burst(box); }, 480);
 }
 function burst(host, x, y, n=10){
   const colors = ["#e8f500","#ff8a3d","#f9a8d4","#5eead4","#b197fc","#fff"];
   for(let i=0;i<n;i++){
     const s = document.createElement("span"); s.className="spark";
     if(x!=null){ s.style.left = x+"px"; s.style.top = y+"px"; }
-    const ang = (i/n)*Math.PI*2 + hash(i,1);
-    const d = 60 + hash(i,2)*60;
+    const ang = (i/n)*Math.PI*2 + R(), d = 60 + R()*60;
     s.style.setProperty("--dx", Math.cos(ang)*d+"px"); s.style.setProperty("--dy", Math.sin(ang)*d+"px");
     s.innerHTML = `<svg viewBox="0 0 100 100"><path d="M50 5 L62 38 L95 50 L62 62 L50 95 L38 62 L5 50 L38 38 Z" fill="${colors[i%colors.length]}" stroke="#141414" stroke-width="8" stroke-linejoin="round"/></svg>`;
     host.appendChild(s); setTimeout(()=>s.remove(), 900);
   }
 }
 
-/* 投币：硬币从按钮飞到右下角冒出来的投币口，掉进去，+1 */
+/* 投币：硬币飞进右下角的投币口，数字加一（假的，不存） */
 function dropCoin(btn){
-  const host = btn.closest(".card, .box");
-  const id = btn.dataset.id;
+  const host = btn.closest(".card, .box"), id = btn.dataset.id;
   let slot = host.querySelector(".slot");
-  if(!slot){
-    slot = document.createElement("div"); slot.className="slot";
-    slot.innerHTML = `<span class="slit"></span><span class="lbl">投币口</span>`;
-    host.appendChild(slot);
-  }
+  if(!slot){ slot = document.createElement("div"); slot.className="slot"; slot.innerHTML = `<span class="slit"></span><span class="lbl">投币口</span>`; host.appendChild(slot); }
   clearTimeout(slot._hide);
   requestAnimationFrame(() => slot.classList.add("show"));
   btn.classList.remove("bump"); void btn.offsetWidth; btn.classList.add("bump");
-
-  const hr = host.getBoundingClientRect(), br = btn.getBoundingClientRect();
-  /* 卡片本身带旋转，用未旋转的盒子尺寸算：按钮相对卡片左上角的位置 */
   const sx = btn.offsetLeft + btn.offsetParent.offsetLeft, sy = btn.offsetTop + btn.offsetParent.offsetTop;
-  const ex = host.clientWidth - 14 - 118/2 - 20, ey = host.clientHeight - 16 - 62 + 14 - 20;
+  const ex = host.clientWidth - 14 - 59 - 20, ey = host.clientHeight - 16 - 62 + 14 - 20;
   const fly = document.createElement("div"); fly.className="flycoin"; fly.innerHTML = COIN_SVG;
-  fly.style.left = sx + "px"; fly.style.top = sy + "px";
-  host.appendChild(fly);
+  fly.style.left = sx + "px"; fly.style.top = sy + "px"; host.appendChild(fly);
   const dx = ex - sx, dy = ey - sy;
-  const anim = fly.animate([
+  fly.animate([
     {transform:"translate(0,0) rotate(0deg)", offset:0},
     {transform:`translate(${dx*0.5}px,${Math.min(dy,0)-90}px) rotate(200deg)`, offset:.5},
     {transform:`translate(${dx}px,${dy-6}px) rotate(360deg) scaleX(1)`, offset:.78},
     {transform:`translate(${dx}px,${dy+14}px) rotate(360deg) scaleX(.12)`, opacity:0, offset:1}
-  ], {duration:900, easing:"cubic-bezier(.3,.9,.4,1)", fill:"forwards"});
-  anim.onfinish = () => {
+  ], {duration:900, easing:"cubic-bezier(.3,.9,.4,1)", fill:"forwards"}).onfinish = () => {
     fly.remove();
     slot.classList.remove("eat"); void slot.offsetWidth; slot.classList.add("eat");
-    coins[id] = (coins[id]||0) + 1; saveCoins();
-    document.querySelectorAll(`.likecount[data-count="${id}"]`).forEach(c => { c.textContent = coins[id]; c.classList.remove("up"); void c.offsetWidth; c.classList.add("up"); });
-    const card = document.querySelector(`.card .coin[data-id="${id}"]`)?.closest(".card");
-    if(card){ const cv = card.querySelector(".cover"); let b = cv.querySelector(".badge"); if(!b){ b = document.createElement("span"); b.className="badge"; cv.appendChild(b); } b.innerHTML = `${COIN_SVG} ×${coins[id]}`; }
+    fake[id] = (fake[id]||0) + 1;
+    document.querySelectorAll(`.likecount[data-count="${id}"]`).forEach(c => { c.textContent = fake[id]; c.classList.remove("up"); void c.offsetWidth; c.classList.add("up"); });
     const plus = document.createElement("span"); plus.className="plusone"; plus.textContent="+1";
     plus.style.left = (ex+20) + "px"; plus.style.top = (ey-10) + "px";
     host.appendChild(plus); setTimeout(()=>plus.remove(), 1000);
@@ -420,71 +434,29 @@ function dropCoin(btn){
   };
 }
 
-function render(){
-  const list = jokes.filter(j => filter.k==="all" || j[filter.k]===filter.v);
-  wall.innerHTML = "";
-  const cols = Math.max(1, Math.floor((wall.clientWidth + 24) / 274));
-  const covers = assignCovers(list, cols);
-  let i = 0, t = 0; const usedTiles = new Set();
-  list.forEach((j, idx) => {
-    const el = document.createElement("article");
-    el.className = `card ${pick(ANIMS, j.id, 13)} ${sizeClass(j)} ${j.lang==="zh"?"zh":""}`;
-    el.style.setProperty("--tilt", ((hash(j.id)*5)-2.5).toFixed(2)+"deg");
-    el.style.setProperty("--i", i++);
-    el.innerHTML = `<div class="inner">${bodyHTML(j)}</div>${coverHTML(j, covers[idx])}`;
-    /* 入场动画结束后摘掉，否则 Chrome 会把翻面的 3D 压平 */
-    el.addEventListener("animationend", e => { if(e.target===el && e.animationName==="pop") el.style.animation="none"; });
-    el.addEventListener("click", e => {
-      const coin = e.target.closest(".coin"); if(coin){ dropCoin(coin); return; }
-      if(!el.classList.contains("open")){ el.classList.add("open"); return; }
-      const box = e.target.closest(".punchbox"); if(box) revealPunch(box);
-    });
-    wall.appendChild(el);
-    /* 隔一段塞一条整行的场景图，位置错开，不落在整数倍上 */
-    if((idx===8 || idx===19 || idx===30) && idx < list.length-1){
-      const strip = document.createElement("div"); strip.className = "strip" + (hash(idx,31)>.5 ? " alt" : "");
-      strip.style.setProperty("--tilt", ((hash(idx,32)*2)-1).toFixed(2)+"deg");
-      strip.style.setProperty("--px", Math.round(hash(idx,33)*100)+"%"); strip.style.setProperty("--py", Math.round(hash(idx,34)*100)+"%");
-      strip.style.setProperty("--i", i++);
-      wall.appendChild(strip);
-    }
-    /* 偶尔塞一个装饰贴纸格子（只用小物件，不用独角兽），和上一个不同 */
-    if((idx===4 || idx===14 || idx===25) && idx < list.length-1){
-      const tile = document.createElement("div"); tile.className = "tile";
-      tile.style.setProperty("--tilt", ((hash(idx,21)*30)-15).toFixed(1)+"deg");
-      tile.style.setProperty("--i", i++);
-      let k = Math.floor(hash(idx,35)*TILES.length); while(usedTiles.has(k)) k = (k+1)%TILES.length; usedTiles.add(k);
-      tile.innerHTML = `<img src="${TILES[k]}" alt="">`;
-      wall.appendChild(tile);
-    }
-  });
-  if(!list.length) wall.innerHTML = `<div class="empty">这里还没有贴纸。</div>`;
-  countEl.textContent = `${list.length} / ${jokes.length} 条`;
-}
-
+/* 底部筛选 */
 function buildChips(){
   const langs = ["zh","en","fr"].filter(l => jokes.some(j=>j.lang===l)).concat([...new Set(jokes.map(j=>j.lang))].filter(l=>!["zh","en","fr"].includes(l)));
   const topics = [...new Set(jokes.map(j=>j.topic))];
   const mk = (k,v,label) => { const b = document.createElement("button"); b.className="chip"; b.dataset.k=k; b.dataset.v=v; b.textContent=label; return b; };
   const anchor = document.getElementById("shuffle");
-  langs.forEach(l => bar.insertBefore(mk("lang", l, LANG[l]||l), anchor));
-  const sep = document.createElement("span"); sep.className="sep"; bar.insertBefore(sep, anchor);
-  topics.forEach(t => bar.insertBefore(mk("topic", t, (EMOJI[t]||"")+" "+t), anchor));
+  langs.forEach(l => dock.insertBefore(mk("lang", l, LANG[l]||l), anchor));
+  const sep = document.createElement("span"); sep.className="sep"; dock.insertBefore(sep, anchor);
+  topics.forEach(t => dock.insertBefore(mk("topic", t, (EMOJI[t]||"")+" "+t), anchor));
 }
-
-bar.addEventListener("click", e => {
-  const b = e.target.closest(".chip"); if(!b || b.id==="shuffle") return;
-  bar.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+dock.addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if(!b || !b.dataset.k) return;
+  dock.querySelectorAll(".chip[data-k]").forEach(x=>x.classList.remove("on"));
   b.classList.add("on");
   filter = b.dataset.k==="all" ? {k:"all",v:null} : {k:b.dataset.k, v:b.dataset.v};
-  render();
+  render(true);
 });
+document.getElementById("rescatter").onclick = () => { window.scrollTo({top:0, behavior:"smooth"}); heroDrop(); render(true); };
 
 /* 随机弹窗 */
-const modal = document.getElementById("modal");
-const mbody = document.getElementById("mbody");
+const modal = document.getElementById("modal"), mbody = document.getElementById("mbody");
 function showRandom(){
-  const j = jokes[Math.floor(Math.random()*jokes.length)];
+  const j = pick(jokes);
   mbody.className = j.lang==="zh" ? "zh" : "";
   mbody.innerHTML = bodyHTML(j);
   modal.classList.add("show");
@@ -496,11 +468,14 @@ document.getElementById("close").onclick = () => modal.classList.remove("show");
 modal.addEventListener("click", e => { if(e.target===modal) modal.classList.remove("show"); });
 document.addEventListener("keydown", e => { if(e.key==="Escape") modal.classList.remove("show"); });
 
+let rt, lastW = window.innerWidth;
+window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { if(Math.abs(window.innerWidth-lastW) > 80){ lastW = window.innerWidth; render(false); } }, 200); });
+
 fetch("jokes.json").then(r=>r.json()).then(d => {
   jokes = d.slice().sort((a,b)=> b.date.localeCompare(a.date) || b.id-a.id);
-  buildChips(); render();
+  buildChips(); heroDrop(); render(true);
 }).catch(err => {
-  wall.innerHTML = `<div class="empty">读不到 jokes.json：${esc(err.message)}<br>本地预览请用 http 服务器打开，不要直接双击文件。</div>`;
+  field.innerHTML += `<div class="empty">读不到 jokes.json：${esc(err.message)}<br>本地预览请用 http 服务器打开，不要直接双击文件。</div>`;
 });
 </script>
 </body>
