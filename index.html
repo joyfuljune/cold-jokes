@@ -445,7 +445,9 @@ function preload(){
   const tick = () => { done++; bar.style.width = Math.round(done/total*100) + "%"; };
   const imgs = PRELOAD.map(src => new Promise(res => { const im = new Image(); im.onload = im.onerror = () => { tick(); res(); }; im.src = src; }));
   const fonts = (document.fonts ? document.fonts.ready : Promise.resolve()).then(tick);
-  return Promise.all([...imgs, fonts]);
+  /* 网络慢就不死等：最多 10 秒，没到的图之后自己出现 */
+  const timeout = new Promise(res => setTimeout(() => { bar.style.width = "100%"; res(); }, 10000));
+  return Promise.race([Promise.all([...imgs, fonts]), timeout]);
 }
 Promise.all([fetch("jokes.json").then(r=>r.json()), preload()]).then(([d]) => {
   jokes = d.slice().sort((a,b)=> b.date.localeCompare(a.date) || b.id-a.id);
