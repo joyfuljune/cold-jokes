@@ -29,25 +29,6 @@
     "date": "2026-10-20"
   },
   {
-    "id": 4,
-    "setup": "什么动物最爱贴在墙上？",
-    "punch": "海豹。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "动物",
-    "date": "2026-10-21",
-    "note": "海豹 ≈ 海报。"
-  },
-  {
-    "id": 5,
-    "setup": "什么蛋不能吃？",
-    "punch": "脸蛋。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "食物",
-    "date": "2026-10-21"
-  },
-  {
     "id": 6,
     "setup": "为什么企鹅的肚子是白的？",
     "punch": "因为它手太短，洗不到背。",
@@ -103,15 +84,6 @@
     "date": "2026-10-24"
   },
   {
-    "id": 12,
-    "setup": "什么东西越洗越脏？",
-    "punch": "水。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "日常",
-    "date": "2026-10-25"
-  },
-  {
     "id": 13,
     "setup": "一个西瓜在路上滚，撞到一块石头，它说：",
     "punch": "哎呀，我裂开了。",
@@ -121,76 +93,12 @@
     "date": "2026-10-25"
   },
   {
-    "id": 14,
-    "setup": "什么门永远关不上？",
-    "punch": "球门。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "日常",
-    "date": "2026-10-27"
-  },
-  {
-    "id": 15,
-    "setup": "什么布剪不断？",
-    "punch": "瀑布。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "语言",
-    "date": "2026-10-27"
-  },
-  {
-    "id": 16,
-    "setup": "什么酒不能喝？",
-    "punch": "碘酒。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "食物",
-    "date": "2026-10-27"
-  },
-  {
-    "id": 17,
-    "setup": "什么水果最忙？",
-    "punch": "芒果。因为它一直在“忙”。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "食物",
-    "date": "2026-10-27",
-    "note": "芒 ≈ 忙。"
-  },
-  {
-    "id": 18,
-    "setup": "什么马不用吃草？",
-    "punch": "海马。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "动物",
-    "date": "2026-10-28"
-  },
-  {
     "id": 19,
     "setup": "飞机飞得那么高，为什么不会撞到星星？",
     "punch": "因为星星会闪。",
     "lang": "zh",
     "country": "CN",
     "topic": "科学",
-    "date": "2026-10-28"
-  },
-  {
-    "id": 20,
-    "setup": "什么东西有头无脚？",
-    "punch": "砖头。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "语言",
-    "date": "2026-10-28"
-  },
-  {
-    "id": 21,
-    "setup": "什么东西只往上升，从不往下降？",
-    "punch": "年龄。",
-    "lang": "zh",
-    "country": "CN",
-    "topic": "日常",
     "date": "2026-10-28"
   },
   {
@@ -279,16 +187,6 @@
     "date": "2026-10-24"
   },
   {
-    "id": 31,
-    "setup": "What do you call a fish with no eyes?",
-    "punch": "A fsh.",
-    "lang": "en",
-    "country": "US",
-    "topic": "动物",
-    "date": "2026-10-25",
-    "note": "eyes ≈ i's，没有 i 的 fish。"
-  },
-  {
     "id": 32,
     "setup": "Why did the scarecrow win an award?",
     "punch": "He was outstanding in his field.",
@@ -336,5 +234,81 @@
     "topic": "语言",
     "date": "2026-10-28",
     "note": "编程 ≈ 边城，沈从文的小说。B 问的是编程语言，A 答的是文学语言。这条口头讲效果最好，写出来“编程”和“边城”不同字。"
+  },
+  {
+    "id": 37,
+    "setup": "小时候我以为爸爸是超人。长大后才发现，",
+    "punch": "他只是超市的人。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "语言",
+    "date": "2026-10-28",
+    "note": "超人 ≈ 超市的人。"
+  },
+  {
+    "id": 38,
+    "setup": "A：我有个朋友开了家店。\nB：卖什么的？\nA：",
+    "punch": "卖关子。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "语言",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 39,
+    "setup": "老师：请用“况且”造句。\n小明：",
+    "punch": "火车开过去了，况且况且况且。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "语言",
+    "date": "2026-10-28",
+    "note": "况且 ≈ 火车的声音。"
+  },
+  {
+    "id": 40,
+    "setup": "老师：请用“难过”造句。\n小明：",
+    "punch": "我家门前的水沟很难过。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "语言",
+    "date": "2026-10-28",
+    "note": "难过：难以通过。"
+  },
+  {
+    "id": 41,
+    "setup": "A：听说你会乐器？\nB：会一点。\nA：什么乐器？\nB：",
+    "punch": "乐高。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "日常",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 42,
+    "setup": "A：你知道世界上最冷的笑话是什么吗？\nB：什么？\nA：",
+    "punch": "就是这个。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "日常",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 43,
+    "setup": "A：我爸是开车的。\nB：司机？\nA：",
+    "punch": "不。开车的时候他是司机，不开车的时候他是我爸。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "职业",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 44,
+    "setup": "A：我昨天学了一门新语言。\nB：哪门？\nA：",
+    "punch": "家门。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "语言",
+    "date": "2026-10-28",
+    "note": "门：语言的量词，也是家门的门。"
   }
 ]
