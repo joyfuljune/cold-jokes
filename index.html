@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>冷笑话收集站</title>
-<meta name="description" content="一座积木山被独角兽坐塌了，散落的每块积木背后藏一个冷笑话。">
+<meta name="description" content="一座石头山被独角兽坐塌了，每块石头背后藏一个冷笑话。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=ZCOOL+KuaiLe&family=Nunito:wght@600;800&display=swap">
 <style>
@@ -17,43 +17,48 @@
   --zh:"ZCOOL KuaiLe","Lilita One","Microsoft YaHei",sans-serif;
   --body:"Nunito","PingFang SC","Microsoft YaHei",sans-serif;
   --bounce:cubic-bezier(.2,1.6,.4,1);
+  --dock:66px;
 }
 *{box-sizing:border-box}
-html,body{margin:0}
+html,body{margin:0;height:100%}
 body{font-family:var(--body);color:var(--ink);background-color:var(--lime);
   background-image:linear-gradient(rgba(20,20,20,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,20,.07) 1px,transparent 1px);
-  background-size:36px 36px;min-height:100vh;overflow-x:hidden;padding-bottom:110px}
+  background-size:36px 36px;overflow:hidden}
 img{display:block}
 
-/* ---------- 场地 ---------- */
-.field{position:relative;margin:0 auto;max-width:1280px;min-height:100vh}
-.field.flow{display:flex;flex-direction:column;align-items:center;gap:26px;padding:20px 16px 40px}
-.hero{position:absolute;z-index:3;filter:drop-shadow(8px 8px 0 rgba(20,20,20,.9));pointer-events:none;transform-origin:50% 100%}
-.field.flow .hero{position:static;width:min(60vw,320px);margin-top:10px}
+/* ---------- 加载 ---------- */
+.loader{position:fixed;inset:0;z-index:100;background:var(--lime);background-image:inherit;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
+.loader.off{opacity:0;visibility:hidden}
+.loader .box{background:var(--cream);border:4px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--ink);padding:28px 34px;display:flex;flex-direction:column;align-items:center;gap:16px;transform:rotate(-2deg)}
+.loader img{width:120px;animation:hop .7s ease-in-out infinite alternate}
+@keyframes hop{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-16px) rotate(6deg)}}
+.loader .txt{font-family:var(--zh);font-size:24px}
+.loader .bar{width:240px;height:22px;border:3px solid var(--ink);border-radius:999px;background:#fff;overflow:hidden}
+.loader .bar i{display:block;height:100%;width:0;background:repeating-linear-gradient(-45deg,var(--neon) 0 10px,var(--green) 10px 20px);transition:width .25s}
+
+/* ---------- 场地：一屏装下，不滚动 ---------- */
+.field{position:absolute;left:0;top:0;right:0;bottom:var(--dock);overflow:hidden}
+.hero{position:absolute;z-index:3;filter:drop-shadow(7px 7px 0 rgba(20,20,20,.9));pointer-events:none;transform-origin:50% 100%}
 
 /* 彩虹标题 */
-.rainbow{position:absolute;left:0;top:0;width:580px;z-index:2;pointer-events:none}
+.rainbow{position:absolute;left:10px;top:4px;width:460px;z-index:2;pointer-events:none}
 .rainbow svg{width:100%;height:auto;overflow:visible}
-.rainbow .en{position:absolute;left:150px;bottom:52px;font-family:var(--display);font-size:22px;letter-spacing:.08em;background:var(--neon);padding:6px 14px;border:3px solid var(--ink);border-radius:999px;box-shadow:var(--shadow-sm);transform:rotate(-2deg);pointer-events:auto}
-.rainbow .tagline{position:absolute;left:92px;bottom:-24px;background:var(--cream);border:3px solid var(--ink);border-radius:16px;box-shadow:var(--shadow-sm);padding:9px 14px;font-weight:800;font-size:14px;width:max-content;max-width:380px;transform:rotate(1.5deg);pointer-events:auto}
+.rainbow .en{position:absolute;left:28%;bottom:16%;font-family:var(--display);font-size:clamp(13px,1.5vw,20px);letter-spacing:.08em;background:var(--neon);padding:5px 12px;border:3px solid var(--ink);border-radius:999px;box-shadow:var(--shadow-sm);transform:rotate(-2deg);pointer-events:auto}
+.rainbow .tagline{position:absolute;left:18%;bottom:-8%;background:var(--cream);border:3px solid var(--ink);border-radius:14px;box-shadow:var(--shadow-sm);padding:7px 12px;font-weight:800;font-size:clamp(11px,1.1vw,14px);width:max-content;max-width:72%;transform:rotate(1.5deg);pointer-events:auto}
 .rainbow .tagline b{background:var(--pink);padding:0 6px;border-radius:6px}
-.field.flow .rainbow{position:static;width:min(92vw,520px);margin-bottom:40px}
-.field.flow .rainbow .tagline{bottom:-30px}
 
-/* 散落的积木块 */
-.block{position:absolute;z-index:1;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);pointer-events:none}
-.block.sq{border-radius:8px}
-.block.ci{border-radius:50%}
-.block.tri{border:0;box-shadow:none;background:none}
-.block.tri svg{width:100%;height:100%;overflow:visible}
-.field.flow .block{display:none}
+/* 小石子，填缝用 */
+.pebble{position:absolute;z-index:1;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);pointer-events:none;border-radius:var(--r)}
 
-/* ---------- 卡片 ---------- */
-.card{position:absolute;z-index:4;background:var(--cream);border:3px solid var(--ink);border-radius:var(--r,22px);box-shadow:var(--shadow);padding:26px 24px 22px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;transform:rotate(var(--tilt,0deg));transition:box-shadow .2s;will-change:transform}
-.card:hover{box-shadow:8px 8px 0 var(--ink)}
-.card:not(.open){overflow:hidden}
-.card.open{cursor:default;height:auto!important;min-height:var(--h);z-index:20}
-.field.flow .card{position:static;width:min(100%,420px)!important;height:auto!important;min-height:var(--h)}
+/* ---------- 石头（卡片） ---------- */
+.card{position:absolute;z-index:4;background:var(--cream);border:3px solid var(--ink);border-radius:var(--r);box-shadow:var(--shadow);padding:0;cursor:pointer;transform:rotate(var(--tilt,0deg));transition:box-shadow .2s;overflow:hidden}
+.card:hover{box-shadow:7px 7px 0 var(--ink)}
+.card .inner{display:none;padding:26px 24px 22px}
+.card.open{z-index:30;overflow:visible;cursor:default;border-radius:24px;transform:none}
+.card.open .inner{display:block}
+.card.open .cover{display:none}
+.card .x{display:none;position:absolute;top:-16px;right:-16px;width:40px;height:40px;border-radius:50%;border:3px solid var(--ink);background:var(--orange);font:800 20px/1 var(--body);cursor:pointer;box-shadow:var(--shadow-sm);z-index:5}
+.card.open .x{display:block}
 .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;font-weight:800;margin-bottom:12px}
 .pill{border:2.5px solid var(--ink);border-radius:999px;padding:4px 9px;background:#fff;box-shadow:2px 2px 0 var(--ink);line-height:1}
 .pill.cc{font-family:ui-monospace,Consolas,monospace;letter-spacing:.08em;background:var(--sky)}
@@ -104,39 +109,28 @@ img{display:block}
 .plusone{position:absolute;z-index:7;pointer-events:none;font-family:var(--display);font-size:26px;color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink);animation:rise 1s ease-out forwards}
 @keyframes rise{from{transform:translate(-50%,0) scale(.6);opacity:0}30%{opacity:1}to{transform:translate(-50%,-70px) scale(1.2);opacity:0}}
 
-/* ---------- 封面 ---------- */
-.cover{position:absolute;inset:-3px;z-index:3;border:3px solid var(--ink);border-radius:var(--r,22px);background:var(--c,var(--neon));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;overflow:hidden;transition:transform .55s var(--bounce),opacity .4s;will-change:transform}
+/* ---------- 石头封面：按石头大小缩放 ---------- */
+.cover{position:absolute;inset:-3px;border-radius:var(--r);background:var(--c,var(--neon));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(6px * var(--k));overflow:hidden}
 .cover.dots{background-image:radial-gradient(rgba(20,20,20,.18) 1.6px,transparent 1.6px);background-size:14px 14px}
 .cover.dots2{background-image:radial-gradient(rgba(255,255,255,.55) 3px,transparent 3.5px);background-size:26px 26px}
 .cover.stripes{background-image:repeating-linear-gradient(-45deg,rgba(255,255,255,.35) 0 12px,transparent 12px 24px)}
 .cover.hlines{background-image:repeating-linear-gradient(0deg,rgba(20,20,20,.16) 0 3px,transparent 3px 16px)}
 .cover.grid{background-image:linear-gradient(rgba(20,20,20,.14) 2px,transparent 2px),linear-gradient(90deg,rgba(20,20,20,.14) 2px,transparent 2px);background-size:22px 22px}
 .cover.checks{background-image:radial-gradient(rgba(255,255,255,.5) 28%,transparent 30%);background-size:34px 34px}
-.cover.pic{background-size:cover;background-position:center;justify-content:flex-end;padding-bottom:16px}
+.cover.pic{background-size:cover;background-position:center;justify-content:flex-end;padding-bottom:calc(12px * var(--k))}
 .cover.pic .hint{background:var(--neon)}
-.cover .big{font-family:var(--display);font-size:66px;line-height:1;color:#fff;-webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
-.cover .uni{height:min(150px,52%);width:auto;max-width:60%;filter:drop-shadow(4px 4px 0 rgba(20,20,20,.85))}
+.cover .big{font-family:var(--display);font-size:calc(60px * var(--k));line-height:1;color:#fff;-webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
+.cover .uni{height:48%;width:auto;max-width:60%;filter:drop-shadow(3px 3px 0 rgba(20,20,20,.85))}
 .card:hover .cover .uni{animation:wiggle .7s ease-in-out}
 @keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
-.cover .hint{font-weight:800;font-size:13px;background:var(--cream);border:2.5px solid var(--ink);border-radius:999px;padding:5px 11px;box-shadow:2px 2px 0 var(--ink);position:relative;z-index:1}
-.card.blob{padding:30px 30px 26px}
-.card.blob .cover .corner{left:50%;transform:translateX(-50%);top:14px}
-.cover .corner{position:absolute;top:12px;left:16px;font-family:ui-monospace,Consolas,monospace;font-size:11px;font-weight:800;letter-spacing:.1em}
-.card.open .cover{pointer-events:none}
-.card.peel .cover{transform-origin:70% 30%}
-.card.peel.open .cover{transform:rotate(-16deg) translate(-115%,30%);opacity:0}
-.card.flip{transform-style:preserve-3d}
-.card.flip .cover{backface-visibility:hidden;transition:none}
-.card.flip .inner{backface-visibility:hidden;transform:rotateY(180deg)}
-.card.flip.open{transform:rotate(var(--tilt,0deg)) rotateY(180deg);transition:transform .7s var(--bounce)}
-.card.curtain{overflow:hidden}
-.card.curtain.open .cover{transform:translateY(-104%) scaleY(.6);opacity:.6}
-.card.pop.open .cover{transform:scale(0) rotate(40deg);opacity:0}
+.cover .hint{font-weight:800;font-size:max(10px,calc(13px * var(--k)));background:var(--cream);border:2.5px solid var(--ink);border-radius:999px;padding:4px 9px;box-shadow:2px 2px 0 var(--ink);position:relative;z-index:1;white-space:nowrap}
+.card.tiny .cover .hint{display:none}
+.card.tiny .cover .big{font-size:calc(80px * var(--k))}
 
 /* ---------- 底部筛选条 ---------- */
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--cream);border-top:3px solid var(--ink);padding:10px 16px;display:flex;gap:10px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.dock{position:fixed;left:0;right:0;bottom:0;height:var(--dock);z-index:40;background:var(--cream);border-top:3px solid var(--ink);padding:0 14px;display:flex;gap:9px;align-items:center;overflow-x:auto;scrollbar-width:none}
 .dock::-webkit-scrollbar{display:none}
-.chip{appearance:none;cursor:pointer;font:800 14px/1 var(--body);color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:999px;padding:9px 14px;box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s,background .15s;white-space:nowrap;flex:0 0 auto}
+.chip{appearance:none;cursor:pointer;font:800 13px/1 var(--body);color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:999px;padding:8px 13px;box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s,background .15s;white-space:nowrap;flex:0 0 auto}
 .chip:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
 .chip:active,.chip.on{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
 .chip.on{background:var(--green)}
@@ -157,15 +151,23 @@ img{display:block}
 .modal .punch{font-size:24px}
 .modal .close{position:absolute;top:-18px;right:-18px;width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);background:var(--orange);font:800 22px/1 var(--body);cursor:pointer;box-shadow:var(--shadow-sm)}
 .modal .again{margin-top:20px;margin-left:0}
-.empty{position:absolute;left:50%;top:60%;transform:translateX(-50%);font-weight:800;font-size:18px;padding:40px;text-align:center}
+.empty{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-weight:800;font-size:18px;text-align:center}
 
 /* 爪子鼠标 */
 body{cursor:url("img/paw.svg") 6 6, auto}
-body a,body button,body .chip,body .card:not(.open),body .punchbox:not(.shown),body .coin,body .modal .close{cursor:url("img/paw-press.svg") 8 8, pointer}
+body a,body button,body .chip,body .card:not(.open),body .punchbox:not(.shown),body .coin,body .modal .close,body .card .x{cursor:url("img/paw-press.svg") 8 8, pointer}
 body .card.open,body .punchbox.shown{cursor:url("img/paw.svg") 6 6, auto}
 </style>
 </head>
 <body>
+
+<div class="loader" id="loader">
+  <div class="box">
+    <img src="img/uni4.png" alt="">
+    <div class="txt">石头搬运中…</div>
+    <div class="bar"><i id="bar"></i></div>
+  </div>
+</div>
 
 <main class="field" id="field">
   <div class="rainbow" id="rainbow">
@@ -187,7 +189,7 @@ body .card.open,body .punchbox.shown{cursor:url("img/paw.svg") 6 6, auto}
       <path d="M 560 150 l5 11 11 5 -11 5 -5 11 -5 -11 -11 -5 11 -5 z" fill="#ff8a3d" stroke="#141414" stroke-width="3" stroke-linejoin="round"/>
     </svg>
     <span class="en">COLD JOKES &amp; PUNS</span>
-    <div class="tagline">积木山被独角兽坐塌了。撕开一块看题，再点一下揭<b>谜底</b>。</div>
+    <div class="tagline">石头山被独角兽坐塌了。点一块石头看题，再点一下揭<b>谜底</b>。</div>
   </div>
   <img class="hero" id="hero" src="img/hero.png" alt="毛茸茸的独角兽">
 </main>
@@ -215,22 +217,17 @@ const COLORS = ["#e8f500","#00e676","#5eead4","#f9a8d4","#b197fc","#ff8a3d","#9a
 const PATTERNS = ["dots","dots2","stripes","hlines","grid","checks"];
 const TOPIC_COLORS = {"动物":"#00e676","食物":"#ff8a3d","科学":"#9adcf9","语言":"#f9a8d4","职业":"#b197fc","日常":"#e8f500","数学":"#5eead4"};
 const EMOJI = {"动物":"🐧","食物":"🍅","科学":"🧪","语言":"💬","职业":"💼","日常":"☕","数学":"📐"};
-const ANIMS = ["peel","flip","curtain","pop"];
-/* 六幅场景图，每幅整页只用一次，各占一张大卡 */
+/* 六幅场景图，每幅整页只用一次 */
 const PICS = [
-  {src:"img/scene.jpg", w:430, h:290},
-  {src:"img/scene2.jpg", w:430, h:290},
-  {src:"img/mid.jpg", w:270, h:400},
-  {src:"img/hallo.jpg", w:430, h:290},
-  {src:"img/hike.jpg", w:340, h:340},
-  {src:"img/hotpot.jpg", w:430, h:290},
+  {src:"img/scene.jpg", ar:1.5},{src:"img/scene2.jpg", ar:1.5},{src:"img/mid.jpg", ar:.67},
+  {src:"img/hallo.jpg", ar:1.5},{src:"img/hike.jpg", ar:1},{src:"img/hotpot.jpg", ar:1.5},
 ];
-const SIZES = [[210,170],[250,210],[250,210],[230,300],[380,220],[270,230]];
+const PRELOAD = ["img/hero.png","img/paw.svg","img/paw-press.svg", ...PICS.map(p=>p.src), ...[1,2,3,4,5,6].map(i=>`img/uni${i}.png`)];
 const COIN_SVG = `<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#e8f500" stroke="#141414" stroke-width="3"/><circle cx="20" cy="20" r="11.5" fill="none" stroke="#141414" stroke-width="2.2" stroke-dasharray="3 3"/><text x="20" y="25" text-anchor="middle" font-family="ZCOOL KuaiLe, Microsoft YaHei, sans-serif" font-size="14" font-weight="700" fill="#141414">冷</text></svg>`;
 
 let jokes = [];
 let filter = {k:"all", v:null};
-const fake = {};                       // 假投币数：每次打开随机，点一下加一，不存
+const fake = {};
 const field = document.getElementById("field");
 const hero = document.getElementById("hero");
 const dock = document.getElementById("dock");
@@ -240,9 +237,9 @@ const R = Math.random;
 const rnd = (a,b) => a + R()*(b-a);
 const pick = arr => arr[Math.floor(R()*arr.length)];
 const shuffle = arr => { const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(R()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function isQuestion(s){ return /[?？]\s*$/.test(s.trim()); }
-/* 石头形状：八个随机圆角 */
 function blobRadius(){ const v = () => Math.round(rnd(35,65)); return `${v()}% ${v()}% ${v()}% ${v()}% / ${v()}% ${v()}% ${v()}% ${v()}%`; }
 
 function metaHTML(j){
@@ -264,20 +261,18 @@ function coverHTML(j, a){
   else if(a.kind==="uni") middle = `<img class="uni" src="img/uni${a.uni}.png" alt="">`;
   else if(a.kind==="emoji") middle = `<span class="big">${EMOJI[j.topic]||"?"}</span>`;
   else middle = `<span class="big">?</span>`;
-  return `<div class="cover ${cls}" style="${style}"><span class="corner">#${String(j.id).padStart(3,"0")} · ${esc(j.country)}</span>${middle}<span class="hint">${EMOJI[j.topic]||"✨"} ${esc(j.topic)} · 撕开</span></div>`;
+  return `<div class="cover ${cls}" style="${style}">${middle}<span class="hint">${EMOJI[j.topic]||"✨"} ${esc(j.topic)}</span></div>`;
 }
 
-/* ---------- 分配：图片各一次、贴纸各一次、emoji 每主题一次、底纹+颜色组合不重复 ---------- */
+/* 封面分配：图片各一次、贴纸各一次、emoji 每主题一次、底纹+颜色组合不重复 */
 function assign(list){
-  const n = list.length;
-  const order = shuffle(list.map((_,i)=>i));
-  const out = new Array(n);
+  const n = list.length, order = shuffle(list.map((_,i)=>i)), out = new Array(n);
   const picIdx = order.slice(0, Math.min(PICS.length, n));
   const uniIdx = order.slice(PICS.length, PICS.length+6);
   const emojiTopics = new Set();
   const combos = shuffle(PATTERNS.flatMap(p => COLORS.map(c => [p,c])));
   list.forEach((j,i) => {
-    let a = {pat: combos[i%combos.length][0], color: combos[i%combos.length][1], kind:"q"};
+    const a = {pat: combos[i%combos.length][0], color: combos[i%combos.length][1], kind:"q"};
     const pi = picIdx.indexOf(i);
     if(pi >= 0){ a.kind="pic"; a.pic = PICS[pi]; }
     else if(uniIdx.includes(i)){ a.kind="uni"; a.uni = uniIdx.indexOf(i)+1; }
@@ -287,103 +282,152 @@ function assign(list){
   return out;
 }
 
-/* ---------- 摆位：随机撒，不许压到彩虹、独角兽和已放的卡 ---------- */
+/* ---------- 石头山：中间被坐塌，左右两坡高低不对称，越往外越矮 ---------- */
 function overlaps(r, rects, m){ return rects.some(o => r.x < o.x+o.w+m && r.x+r.w+m > o.x && r.y < o.y+o.h+m && r.y+r.h+m > o.y); }
-function scatter(items, W, reserved){
-  const placed = reserved.slice();
-  const area = items.reduce((a,it)=>a+it.w*it.h, 0);
-  let H = Math.max(900, area * 1.7 / W);
-  items.forEach(it => {
-    let best = null;
-    for(let round=0; round<8 && !best; round++){
-      for(let t=0;t<60;t++){
-        const x = rnd(0, Math.max(0, W-it.w)), y = rnd(0, Math.max(0, H-it.h));
-        const r = {x,y,w:it.w,h:it.h};
-        if(!overlaps(r, placed, 12) && (!best || y < best.y)) best = r;
-      }
-      if(!best) H += 160;
-    }
-    if(!best){ best = {x:rnd(0, Math.max(0,W-it.w)), y:H, w:it.w, h:it.h}; H += it.h + 30; }
-    it.x = best.x; it.y = best.y; placed.push(best);
+function layout(list){
+  const W = field.clientWidth, H = field.clientHeight;
+  const n = list.length;
+  /* 独角兽：坐在中间偏左或偏右一点 */
+  const hh = clamp(H*.5, 200, 520), hw = hh/1.49;
+  const cx = W*(.5 + rnd(-.07,.07)), hy = H*.92 - hh, hx = cx - hw/2;
+  /* 山的轮廓 f(x)：离地高度。两个峰分别在独角兽两侧，高度、宽度各自随机 */
+  const xl = cx - hw*.5 - rnd(40,140), xr = cx + hw*.5 + rnd(40,140);
+  const pl = H*rnd(.5,.78), pr = H*rnd(.5,.78), sl = W*rnd(.13,.22), sr = W*rnd(.13,.22), base = H*rnd(.1,.2);
+  const f = x => {
+    let v = base + pl*Math.exp(-(((x-xl)/sl)**2)) + pr*Math.exp(-(((x-xr)/sr)**2));
+    if(x > hx-20 && x < hx+hw+20) v = Math.min(v, H - (hy + hh*.3));   // 独角兽胸口以上不堆石头
+    return Math.min(v, H - 12);
+  };
+  const fmax = Math.max(...Array.from({length:60},(_,i)=>f(W*i/59)));
+  /* 石头大小：按山的面积均分，再随机放大缩小 */
+  let area = 0; for(let i=0;i<60;i++) area += f(W*i/59) * (W/60);
+  const s0 = clamp(Math.sqrt(area * .55 / Math.max(n,1)), 46, 230);
+  const rainbowW = Math.min(460, W*.38);
+  const reserved = [{x:0,y:0,w:rainbowW+10,h:rainbowW*.62}, {x:hx+hw*.08,y:hy+hh*.12,w:hw*.84,h:hh*.88}];
+  const items = list.map((j,i) => {
+    const a = this_covers[i];
+    const side = s0 * (a.kind==="pic" ? rnd(1.4,1.8) : rnd(.6,1.45));
+    let w = side, h = side;
+    if(a.kind==="pic"){ w = side*Math.sqrt(a.pic.ar); h = side/Math.sqrt(a.pic.ar); } else { w *= rnd(.85,1.3); h *= rnd(.8,1.2); }
+    return {j, a, w:Math.round(w), h:Math.round(h), tilt:rnd(-14,14)};
   });
-  return Math.max(...placed.map(r=>r.y+r.h)) + 60;
+  /* 大的先放，放不下就缩小 */
+  const placed = reserved.slice();
+  items.slice().sort((a,b)=>b.w*b.h-a.w*a.h).forEach(it => {
+    let ok = false;
+    for(let shrink=0; shrink<6 && !ok; shrink++){
+      for(let t=0;t<260;t++){
+        const x = rnd(0, W-it.w);
+        if(R() > f(x+it.w/2)/fmax) continue;                      // 山高的地方石头密
+        const top = H - f(x+it.w/2), ymin = Math.max(0, top), ymax = H - it.h;
+        if(ymax < ymin) continue;
+        const y = rnd(ymin, ymax);
+        const r = {x,y,w:it.w,h:it.h};
+        if(!overlaps(r, placed, 4)){ it.x=x; it.y=y; placed.push(r); ok=true; break; }
+      }
+      if(!ok){ it.w = Math.round(it.w*.88); it.h = Math.round(it.h*.88); }
+    }
+    if(!ok){ for(let t=0;t<400 && !ok;t++){ const r={x:rnd(0,W-it.w),y:rnd(0,H-it.h),w:it.w,h:it.h}; if(!overlaps(r,placed,2)){ it.x=r.x; it.y=r.y; placed.push(r); ok=true; } } }
+    if(!ok){ it.x = rnd(0,W-it.w); it.y = H-it.h; }
+  });
+  /* 填缝的小石子 */
+  const pebbles = [];
+  for(let k=0;k<22;k++){
+    const s = Math.round(rnd(14,34));
+    for(let t=0;t<80;t++){ const x=rnd(0,W-s), y=rnd(Math.max(0,H-f(x)), H-s); if(y<0) continue; const r={x,y,w:s,h:s}; if(!overlaps(r,placed,3)){ pebbles.push({x,y,w:s,h:s*rnd(.7,1)}); placed.push(r); break; } }
+  }
+  return {items, pebbles, hero:{x:hx,y:hy,w:hw,h:hh}, W, H};
 }
 
-let topZ = 0;
+let this_covers = [], topZ = 0, current = null;
 function render(animate){
   const list = jokes.filter(j => filter.k==="all" || j[filter.k]===filter.v);
-  field.querySelectorAll(".card,.block,.empty").forEach(e=>e.remove());
-  const mobile = window.innerWidth < 720;
-  field.classList.toggle("flow", mobile);
-  const W = field.clientWidth;
-  const covers = assign(list);
-  const items = list.map((j,i) => {
-    const a = covers[i];
-    let w,h;
-    if(a.kind==="pic"){ w=a.pic.w; h=a.pic.h; } else { [w,h] = pick(SIZES); if(j.setup.length>60) { w=Math.max(w,330); h=Math.max(h,230); } }
-    const s = Math.min(1, (W-20)/w); w=Math.round(w*s); h=Math.round(h*s);
-    return {j, a, w, h, tilt: rnd(-9,9), blob: a.kind!=="pic" && R()<.45, anim: pick(ANIMS)};
-  });
-  /* 独角兽落点：第一屏中间偏右 */
-  const hw = Math.min(440, W*.36), hh = hw*1.49;
-  const hx = W*.57 - hw/2, hy = 110;
-  const reserved = mobile ? [] : [{x:0,y:0,w:Math.min(580,W),h:340},{x:hx-10,y:hy-10,w:hw+20,h:hh+20}];
-  /* 散落的积木块 */
-  const blocks = mobile ? [] : Array.from({length:12}, () => { const s = Math.round(rnd(34,70)); return {w:s,h:s,block:true,shape:pick(["sq","sq","ci","tri"]),color:pick(COLORS),tilt:rnd(-30,30)}; });
-  if(!mobile){ const H = scatter(items.concat(blocks), W, reserved); field.style.height = H + "px"; hero.style.width = hw+"px"; hero.style.left = hx+"px"; hero.style.top = hy+"px"; }
-  else { field.style.height = ""; hero.style.cssText = ""; }
-  const cx = hx + hw/2, cy = hy + hh*.7;
-  blocks.forEach((b,k) => {
-    const el = document.createElement("div"); el.className = "block " + b.shape;
-    el.style.cssText = `left:${b.x}px;top:${b.y}px;width:${b.w}px;height:${b.h}px;background:${b.color};transform:rotate(${b.tilt}deg)`;
-    if(b.shape==="tri") el.innerHTML = `<svg viewBox="0 0 100 100"><path d="M50 6 L96 92 L4 92 Z" fill="${b.color}" stroke="#141414" stroke-width="7" stroke-linejoin="round"/></svg>`;
+  field.querySelectorAll(".card,.pebble,.empty").forEach(e=>e.remove());
+  this_covers = assign(list);
+  const L = layout(list);
+  document.getElementById("rainbow").style.width = Math.min(460, L.W*.38) + "px";
+  hero.style.width = L.hero.w+"px"; hero.style.left = L.hero.x+"px"; hero.style.top = L.hero.y+"px";
+  const cx = L.hero.x + L.hero.w/2, cy = L.hero.y + L.hero.h*.75;
+  L.pebbles.forEach((p,k) => {
+    const el = document.createElement("div"); el.className="pebble";
+    el.style.cssText = `left:${p.x}px;top:${p.y}px;width:${p.w}px;height:${p.h}px;background:${pick(COLORS)};--r:${blobRadius()};transform:rotate(${rnd(-30,30)}deg)`;
     field.appendChild(el);
-    if(animate) flyIn(el, cx - b.x - b.w/2, cy - b.y - b.h/2, b.tilt, 900 + k*30);
+    if(animate) flyIn(el, cx-p.x-p.w/2, cy-p.y-p.h/2, 0, 900+k*20);
   });
-  items.forEach((it,i) => {
+  L.items.forEach((it,i) => {
     const j = it.j, el = document.createElement("article");
-    el.className = `card ${it.anim} ${j.lang==="zh"?"zh":""} ${it.blob?"blob":""}`;
-    el.style.setProperty("--tilt", it.tilt.toFixed(2)+"deg");
-    el.style.setProperty("--r", it.blob ? blobRadius() : Math.round(rnd(14,34))+"px");
-    el.style.setProperty("--h", it.h+"px");
-    if(!mobile) el.style.cssText += `left:${it.x}px;top:${it.y}px;width:${it.w}px;height:${it.h}px;`;
-    else el.style.cssText += `min-height:${it.h}px;`;
-    el.innerHTML = `<div class="inner">${bodyHTML(j)}</div>${coverHTML(j, it.a)}`;
+    const k = clamp(Math.min(it.w,it.h)/200, .35, 1.2);
+    el.className = `card ${j.lang==="zh"?"zh":""} ${Math.min(it.w,it.h)<95?"tiny":""}`;
+    el.style.cssText = `left:${it.x}px;top:${it.y}px;width:${it.w}px;height:${it.h}px;--tilt:${it.tilt.toFixed(1)}deg;--r:${blobRadius()};--k:${k.toFixed(2)}`;
+    el.dataset.rect = JSON.stringify({x:it.x,y:it.y,w:it.w,h:it.h});
+    el.innerHTML = `<button class="x" aria-label="合上">×</button><div class="inner">${bodyHTML(j)}</div>${coverHTML(j, it.a)}`;
     el.addEventListener("click", e => {
+      if(e.target.closest(".x")){ closeCard(el); return; }
       const coin = e.target.closest(".coin"); if(coin){ dropCoin(coin); return; }
-      if(!el.classList.contains("open")){ el.classList.add("open"); el.style.zIndex = 20 + (++topZ); return; }
+      if(!el.classList.contains("open")){ openCard(el); return; }
       const box = e.target.closest(".punchbox"); if(box) revealPunch(box);
     });
     field.appendChild(el);
-    if(animate) flyIn(el, mobile ? 0 : cx - it.x - it.w/2, mobile ? -60 : cy - it.y - it.h/2, it.tilt, 950 + i*28 + rnd(0,120));
+    if(animate) flyIn(el, cx-it.x-it.w/2, cy-it.y-it.h/2, it.tilt, 950+i*22+rnd(0,120));
   });
-  if(!list.length){ const e = document.createElement("div"); e.className="empty"; e.textContent="这里一块积木都没有。"; field.appendChild(e); }
+  if(!list.length){ const e = document.createElement("div"); e.className="empty"; e.textContent="这里一块石头都没有。"; field.appendChild(e); }
   countEl.textContent = `${list.length} / ${jokes.length} 块`;
 }
 
-/* 从独角兽屁股底下飞出去；飞完把动画摘掉，否则翻面的 3D 会被压平 */
+/* 石头打开：原地长大成卡片，不出屏幕；再点 × 或空白处缩回去 */
+function openCard(el){
+  if(current && current!==el) closeCard(current);
+  const r = JSON.parse(el.dataset.rect), W = field.clientWidth, H = field.clientHeight;
+  const first = el.getBoundingClientRect();
+  const w = Math.min(380, W-24);
+  el.classList.add("open"); el.style.width = w+"px"; el.style.height = "auto";
+  const h = el.offsetHeight;
+  const x = clamp(r.x + r.w/2 - w/2, 12, W-w-12), y = clamp(r.y + r.h/2 - h/2, 12, H-h-12);
+  el.style.left = x+"px"; el.style.top = y+"px"; el.style.zIndex = 30 + (++topZ);
+  const last = el.getBoundingClientRect();
+  el.animate([
+    {transform:`translate(${first.left-last.left}px,${first.top-last.top}px) scale(${first.width/last.width},${first.height/last.height}) rotate(var(--tilt))`, opacity:.6},
+    {transform:"none", opacity:1}
+  ], {duration:450, easing:"cubic-bezier(.2,1.3,.4,1)"});
+  current = el;
+  fitObs.observe(el);
+}
+const fitObs = new ResizeObserver(entries => entries.forEach(en => {
+  const el = en.target; if(!el.classList.contains("open")) return;
+  const H = field.clientHeight, h = el.offsetHeight;
+  const y = clamp(parseFloat(el.style.top), 12, Math.max(12, H-h-12));
+  if(Math.abs(y - parseFloat(el.style.top)) > 1) el.style.top = y + "px";
+}));
+function closeCard(el){
+  fitObs.unobserve(el);
+  const r = JSON.parse(el.dataset.rect);
+  el.classList.remove("open");
+  el.style.left = r.x+"px"; el.style.top = r.y+"px"; el.style.width = r.w+"px"; el.style.height = r.h+"px"; el.style.zIndex = "";
+  const j = jokes.find(x => x.id == el.querySelector(".coin").dataset.id);
+  el.querySelector(".inner").innerHTML = bodyHTML(j);      // 合上就复位：胶带贴回去
+  el.querySelector(".slot")?.remove();
+  el.animate([{transform:"scale(1.15) rotate(var(--tilt))"},{transform:"rotate(var(--tilt))"}], {duration:350, easing:"cubic-bezier(.2,1.4,.4,1)"});
+  if(current===el) current = null;
+}
+field.addEventListener("click", e => { if(current && !e.target.closest(".card")) closeCard(current); });
+
 function flyIn(el, dx, dy, tilt, delay){
-  el.style.opacity = 0;
   const a = el.animate([
-    {opacity:0, transform:`translate(${dx}px,${dy}px) rotate(${tilt + rnd(-200,200)}deg) scale(.15)`, offset:0},
+    {opacity:0, transform:`translate(${dx}px,${dy}px) rotate(${tilt + rnd(-220,220)}deg) scale(.1)`, offset:0},
     {opacity:1, offset:.25},
     {opacity:1, transform:`translate(0,0) rotate(${tilt}deg) scale(1)`, offset:1}
-  ], {duration: 900 + rnd(0,400), delay, easing:"cubic-bezier(.2,1.4,.4,1)", fill:"backwards"});
-  a.onfinish = () => { el.style.opacity = ""; };
+  ], {duration: 850 + rnd(0,450), delay, easing:"cubic-bezier(.2,1.4,.4,1)", fill:"backwards"});
 }
 function heroDrop(){
-  const a = hero.animate([
+  hero.animate([
     {transform:"translateY(-120vh) rotate(-8deg)", offset:0},
     {transform:"translateY(0) rotate(0)", offset:.75, easing:"cubic-bezier(.4,0,1,1)"},
     {transform:"translateY(0) scale(1.25,.72)", offset:.84},
     {transform:"translateY(-30px) scale(.92,1.08)", offset:.92},
     {transform:"translateY(0) scale(1,1)", offset:1}
-  ], {duration:1250, easing:"ease-out", fill:"backwards"});
-  a.onfinish = shake;
+  ], {duration:1250, easing:"ease-out", fill:"backwards"}).onfinish = shake;
 }
-function shake(){
-  document.body.animate([{transform:"translate(0,0)"},{transform:"translate(-6px,4px)"},{transform:"translate(5px,-3px)"},{transform:"translate(-3px,2px)"},{transform:"translate(0,0)"}], {duration:380});
-}
+function shake(){ document.body.animate([{transform:"translate(0,0)"},{transform:"translate(-6px,4px)"},{transform:"translate(5px,-3px)"},{transform:"translate(-3px,2px)"},{transform:"translate(0,0)"}], {duration:380}); }
 
 /* 谜底揭晓 */
 function revealPunch(box){
@@ -403,7 +447,7 @@ function burst(host, x, y, n=10){
   }
 }
 
-/* 投币：硬币飞进右下角的投币口，数字加一（假的，不存） */
+/* 投币（假计数） */
 function dropCoin(btn){
   const host = btn.closest(".card, .box"), id = btn.dataset.id;
   let slot = host.querySelector(".slot");
@@ -449,33 +493,40 @@ dock.addEventListener("click", e => {
   dock.querySelectorAll(".chip[data-k]").forEach(x=>x.classList.remove("on"));
   b.classList.add("on");
   filter = b.dataset.k==="all" ? {k:"all",v:null} : {k:b.dataset.k, v:b.dataset.v};
-  render(true);
+  current = null; render(true);
 });
-document.getElementById("rescatter").onclick = () => { window.scrollTo({top:0, behavior:"smooth"}); heroDrop(); render(true); };
+document.getElementById("rescatter").onclick = () => { current = null; heroDrop(); render(true); };
 
 /* 随机弹窗 */
 const modal = document.getElementById("modal"), mbody = document.getElementById("mbody");
-function showRandom(){
-  const j = pick(jokes);
-  mbody.className = j.lang==="zh" ? "zh" : "";
-  mbody.innerHTML = bodyHTML(j);
-  modal.classList.add("show");
-}
+function showRandom(){ const j = pick(jokes); mbody.className = j.lang==="zh" ? "zh" : ""; mbody.innerHTML = bodyHTML(j); modal.classList.add("show"); }
 mbody.addEventListener("click", e => { const coin = e.target.closest(".coin"); if(coin){ dropCoin(coin); return; } const box = e.target.closest(".punchbox"); if(box) revealPunch(box); });
 document.getElementById("shuffle").onclick = showRandom;
 document.getElementById("again").onclick = showRandom;
 document.getElementById("close").onclick = () => modal.classList.remove("show");
 modal.addEventListener("click", e => { if(e.target===modal) modal.classList.remove("show"); });
-document.addEventListener("keydown", e => { if(e.key==="Escape") modal.classList.remove("show"); });
+document.addEventListener("keydown", e => { if(e.key==="Escape"){ modal.classList.remove("show"); if(current) closeCard(current); } });
 
-let rt, lastW = window.innerWidth;
-window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { if(Math.abs(window.innerWidth-lastW) > 80){ lastW = window.innerWidth; render(false); } }, 200); });
+let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { current = null; render(false); }, 250); });
 
-fetch("jokes.json").then(r=>r.json()).then(d => {
+/* 先把图和字体全部加载完，再掉独角兽 */
+function preload(){
+  const bar = document.getElementById("bar");
+  let done = 0; const total = PRELOAD.length + 1;
+  const tick = () => { done++; bar.style.width = Math.round(done/total*100) + "%"; };
+  const imgs = PRELOAD.map(src => new Promise(res => { const im = new Image(); im.onload = im.onerror = () => { tick(); res(); }; im.src = src; }));
+  const fonts = (document.fonts ? document.fonts.ready : Promise.resolve()).then(tick);
+  return Promise.all([...imgs, fonts]);
+}
+
+Promise.all([fetch("jokes.json").then(r=>r.json()), preload()]).then(([d]) => {
   jokes = d.slice().sort((a,b)=> b.date.localeCompare(a.date) || b.id-a.id);
-  buildChips(); heroDrop(); render(true);
+  buildChips();
+  const loader = document.getElementById("loader");
+  loader.classList.add("off");
+  setTimeout(() => { heroDrop(); render(true); }, 350);
 }).catch(err => {
-  field.innerHTML += `<div class="empty">读不到 jokes.json：${esc(err.message)}<br>本地预览请用 http 服务器打开，不要直接双击文件。</div>`;
+  document.querySelector(".loader .txt").textContent = "读不到 jokes.json：" + err.message;
 });
 </script>
 </body>
