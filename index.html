@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>冷笑话收集站</title>
+<meta name="description" content="一张张贴纸，每张背后藏一个冷笑话或双关。点开看。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=ZCOOL+KuaiLe&family=Nunito:wght@600;800&display=swap">
+<style>
+:root{
+  --lime:#cdef9c;      /* 页面底色，取自 Dino World */
+  --lime-deep:#b9e77c;
+  --cream:#f6f4e3;
+  --ink:#141414;
+  --neon:#e8f500;
+  --green:#00e676;
+  --mint:#5eead4;
+  --pink:#f9a8d4;
+  --purple:#b197fc;
+  --orange:#ff8a3d;
+  --sky:#9adcf9;
+  --shadow:5px 5px 0 var(--ink);
+  --shadow-sm:3px 3px 0 var(--ink);
+  --display:"Lilita One","ZCOOL KuaiLe","Microsoft YaHei",sans-serif;
+  --zh-display:"ZCOOL KuaiLe","Lilita One","Microsoft YaHei",sans-serif;
+  --body:"Nunito","PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  font-family:var(--body);
+  color:var(--ink);
+  background-color:var(--lime);
+  background-image:
+    linear-gradient(rgba(20,20,20,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(20,20,20,.07) 1px,transparent 1px);
+  background-size:36px 36px;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ---------- 漂浮装饰 ---------- */
+.deco{position:fixed;z-index:0;pointer-events:none;animation:bob 6s ease-in-out infinite}
+.deco svg{display:block;overflow:visible}
+.deco.d1{top:7vh;left:3vw;width:90px;animation-delay:-1s}
+.deco.d2{top:20vh;right:4vw;width:80px;animation-delay:-3s}
+.deco.d3{bottom:12vh;left:6vw;width:120px;animation-delay:-2s}
+.deco.d4{bottom:18vh;right:7vw;width:100px;animation-delay:-4s}
+.deco.d5{top:55vh;left:1vw;width:70px;animation-delay:-5s}
+.deco.d6{top:48vh;right:2vw;width:60px}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(4deg)}}
+@media (max-width:900px){.deco{display:none}}
+
+/* ---------- 顶部 ---------- */
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:36px 20px 80px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 28px;margin-bottom:26px}
+h1{
+  margin:0;
+  font-family:var(--zh-display);
+  font-weight:400;
+  font-size:clamp(44px,8vw,86px);
+  line-height:1;
+  color:#fff;
+  -webkit-text-stroke:3px var(--ink);
+  paint-order:stroke fill;
+  text-shadow:6px 6px 0 var(--ink);
+  letter-spacing:.02em;
+  transform:rotate(-2deg);
+  display:inline-block;
+}
+h1 .en{
+  font-family:var(--display);
+  display:block;
+  font-size:.42em;
+  color:var(--neon);
+  letter-spacing:.08em;
+  margin-top:8px;
+  transform:rotate(1.5deg);
+}
+.tagline{
+  background:var(--cream);
+  border:3px solid var(--ink);
+  border-radius:16px;
+  box-shadow:var(--shadow-sm);
+  padding:10px 16px;
+  font-weight:800;
+  max-width:340px;
+  transform:rotate(1deg);
+}
+.tagline b{background:var(--pink);padding:0 6px;border-radius:6px}
+
+/* ---------- 过滤条 ---------- */
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 30px}
+.chip{
+  appearance:none;cursor:pointer;
+  font:800 15px/1 var(--body);
+  color:var(--ink);
+  background:var(--cream);
+  border:3px solid var(--ink);
+  border-radius:999px;
+  padding:10px 16px;
+  box-shadow:var(--shadow-sm);
+  transition:transform .08s,box-shadow .08s,background .15s;
+}
+.chip:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.chip:active,.chip.on{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.chip.on{background:var(--green)}
+.chip[data-k="lang"].on{background:var(--neon)}
+.chip.shuffle{background:var(--purple);margin-left:auto}
+.chip.shuffle:hover{background:var(--pink)}
+.bar .sep{width:3px;height:26px;background:var(--ink);border-radius:2px;margin:0 4px}
+
+/* ---------- 卡片墙 ---------- */
+.wall{display:flex;gap:22px;align-items:flex-start}
+.col{flex:1;min-width:0}
+.card{
+  break-inside:avoid;
+  position:relative;
+  margin:0 0 22px;
+  background:var(--cream);
+  border:3px solid var(--ink);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:22px 20px 18px;
+  min-height:150px;
+  cursor:pointer;
+  transform:rotate(var(--tilt,0deg));
+  transition:transform .15s;
+  animation:pop .4s cubic-bezier(.2,1.4,.4,1) both;
+  animation-delay:calc(var(--i,0) * 35ms);
+}
+.card:hover{transform:rotate(var(--tilt,0deg)) translate(-2px,-3px)}
+@keyframes pop{from{opacity:0;transform:scale(.7) rotate(var(--tilt,0deg))}to{opacity:1}}
+
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;font-weight:800;margin-bottom:12px}
+.pill{border:2.5px solid var(--ink);border-radius:999px;padding:4px 9px;background:#fff;box-shadow:2px 2px 0 var(--ink);line-height:1}
+.pill.cc{font-family:ui-monospace,Consolas,monospace;letter-spacing:.08em;background:var(--sky)}
+.pill.topic{background:var(--topic,var(--neon))}
+.date{margin-left:auto;font-family:ui-monospace,Consolas,monospace;font-size:11px;opacity:.65}
+
+.joke{font-size:17px;line-height:1.55;white-space:pre-line;font-weight:600;margin:0}
+.joke.zh{font-size:18px}
+.note{
+  margin:14px 0 0;font-size:13px;line-height:1.5;
+  background:#fff;border:2.5px dashed var(--ink);border-radius:12px;padding:8px 10px;
+}
+.note::before{content:"笑点 → ";font-weight:800}
+
+/* 贴纸封面 */
+.cover{
+  position:absolute;inset:-3px;
+  border:3px solid var(--ink);
+  border-radius:22px;
+  background:var(--c,var(--neon));
+  background-image:radial-gradient(rgba(20,20,20,.18) 1.6px,transparent 1.6px);
+  background-size:14px 14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  transform-origin:70% 30%;
+  transition:transform .45s cubic-bezier(.6,-.3,.3,1.2),opacity .35s;
+}
+.cover .big{
+  font-family:var(--display);
+  font-size:64px;line-height:1;color:#fff;
+  -webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;
+  text-shadow:4px 4px 0 var(--ink);
+}
+.cover .hint{font-weight:800;font-size:13px;background:var(--cream);border:2.5px solid var(--ink);border-radius:999px;padding:5px 11px;box-shadow:2px 2px 0 var(--ink)}
+.cover .corner{position:absolute;top:10px;left:14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;font-weight:800;letter-spacing:.1em}
+.cover .star{position:absolute;right:12px;top:10px;width:26px}
+.card.open .cover{transform:rotate(-14deg) translate(-115%,30%);opacity:0;pointer-events:none}
+.card.open{cursor:default}
+
+/* 随机弹窗 */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(20,20,20,.55);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modal .box{
+  background:var(--cream);border:4px solid var(--ink);border-radius:28px;box-shadow:10px 10px 0 var(--ink);
+  max-width:620px;width:100%;padding:34px 30px 26px;position:relative;
+  animation:pop .35s cubic-bezier(.2,1.4,.4,1) both;
+}
+.modal .joke{font-size:24px}
+.modal .joke.zh{font-size:26px}
+.modal .close{position:absolute;top:-18px;right:-18px;width:44px;height:44px;border-radius:50%;border:3px solid var(--ink);background:var(--orange);font:800 22px/1 var(--body);cursor:pointer;box-shadow:var(--shadow-sm)}
+.modal .again{margin-top:20px}
+
+footer{margin-top:50px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-weight:800;font-size:14px}
+footer a{color:var(--ink);background:var(--mint);border:2.5px solid var(--ink);border-radius:999px;padding:6px 12px;text-decoration:none;box-shadow:2px 2px 0 var(--ink)}
+footer a:hover{background:var(--pink)}
+.count{background:var(--cream);border:2.5px solid var(--ink);border-radius:999px;padding:6px 12px;box-shadow:2px 2px 0 var(--ink)}
+.empty{font-weight:800;font-size:18px;padding:40px;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- 漂浮的几何装饰：弧线、立方体、星星、涂鸦 -->
+<div class="deco d1"><svg viewBox="0 0 100 100"><path d="M20 80 C-10 40,40 0,70 25" fill="none" stroke="#e8f500" stroke-width="18" stroke-linecap="round"/><path d="M20 80 C-10 40,40 0,70 25" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round" transform="translate(0,-11)"/><path d="M20 80 C-10 40,40 0,70 25" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round" transform="translate(0,11)"/></svg></div>
+<div class="deco d2"><svg viewBox="0 0 100 100"><g stroke="#141414" stroke-width="3" stroke-linejoin="round"><path d="M50 10 L90 30 L50 50 L10 30 Z" fill="#f9a8d4"/><path d="M10 30 L50 50 L50 90 L10 70 Z" fill="#e879b9"/><path d="M90 30 L50 50 L50 90 L90 70 Z" fill="#fbc8e6"/></g></svg></div>
+<div class="deco d3"><svg viewBox="0 0 140 60"><path d="M5 40 c10 -40 20 -40 30 0 s20 40 30 0 s20 -40 30 0 s20 40 40 0" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"/></svg></div>
+<div class="deco d4"><svg viewBox="0 0 100 100"><g stroke="#141414" stroke-width="3" stroke-linejoin="round"><path d="M50 10 L90 30 L50 50 L10 30 Z" fill="#00e676"/><path d="M10 30 L50 50 L50 90 L10 70 Z" fill="#00b85c"/><path d="M90 30 L50 50 L50 90 L90 70 Z" fill="#7dffb3"/></g></svg></div>
+<div class="deco d5"><svg viewBox="0 0 100 100"><path d="M50 2 L58 38 L95 30 L66 52 L85 90 L50 66 L15 90 L34 52 L5 30 L42 38 Z" fill="#ff8a3d" stroke="#141414" stroke-width="3" stroke-linejoin="round"/></svg></div>
+<div class="deco d6"><svg viewBox="0 0 100 100"><path d="M50 5 L62 38 L95 50 L62 62 L50 95 L38 62 L5 50 L38 38 Z" fill="#fff" stroke="#141414" stroke-width="3" stroke-linejoin="round"/></svg></div>
+
+<div class="wrap">
+  <header>
+    <h1>冷笑话收集站<span class="en">COLD JOKES &amp; PUNS</span></h1>
+    <div class="tagline">每张贴纸背后藏一个<b>冷笑话</b>或<b>双关</b>。点开看，冷到了算你的。</div>
+  </header>
+
+  <div class="bar" id="bar">
+    <button class="chip on" data-k="all">全部</button>
+    <span class="sep"></span>
+    <!-- 语言和主题的按钮由脚本生成 -->
+    <button class="chip shuffle" id="shuffle">🎲 随机来一条</button>
+  </div>
+
+  <div class="wall" id="wall"></div>
+
+  <footer>
+    <span class="count" id="count"></span>
+    <a href="https://github.com/joyfuljune/cold-jokes/edit/main/jokes.json" target="_blank" rel="noopener">＋ 在 GitHub 上添一条</a>
+    <a href="https://github.com/joyfuljune/cold-jokes" target="_blank" rel="noopener">源码</a>
+  </footer>
+</div>
+
+<div class="modal" id="modal">
+  <div class="box">
+    <button class="close" id="close" aria-label="关闭">×</button>
+    <div class="meta" id="mmeta"></div>
+    <p class="joke" id="mjoke"></p>
+    <p class="note" id="mnote" hidden></p>
+    <button class="chip shuffle again" id="again">🎲 再来一条</button>
+  </div>
+</div>
+
+<script>
+const LANG = {zh:"中文",en:"English",ja:"日本語",de:"Deutsch",fr:"Français",es:"Español"};
+const COLORS = ["#e8f500","#00e676","#5eead4","#f9a8d4","#b197fc","#ff8a3d","#9adcf9"];
+const TOPIC_COLORS = {"动物":"#00e676","食物":"#ff8a3d","科学":"#9adcf9","语言":"#f9a8d4","职业":"#b197fc","日常":"#e8f500","数学":"#5eead4"};
+const EMOJI = {"动物":"🐧","食物":"🍅","科学":"🧪","语言":"💬","职业":"💼","日常":"☕","数学":"📐"};
+
+let jokes = [];
+let filter = {k:"all", v:null};
+
+const wall = document.getElementById("wall");
+const bar = document.getElementById("bar");
+const countEl = document.getElementById("count");
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function hash(n){ // 稳定的伪随机，刷新后每张卡片的倾斜角不变
+  let x = Math.sin(n * 9301 + 49297) * 233280; return x - Math.floor(x);
+}
+
+function metaHTML(j){
+  const tc = TOPIC_COLORS[j.topic] || "#e8f500";
+  return `<span class="pill cc">${esc(j.country)}</span>
+          <span class="pill">${esc(LANG[j.lang] || j.lang)}</span>
+          <span class="pill topic" style="--topic:${tc}">${EMOJI[j.topic]||"✨"} ${esc(j.topic)}</span>
+          <span class="date">${esc(j.date)}</span>`;
+}
+
+function render(){
+  const list = jokes.filter(j => filter.k==="all" || j[filter.k]===filter.v);
+  wall.innerHTML = "";
+  const n = Math.max(1, Math.min(3, Math.floor((wall.clientWidth + 22) / 322)));
+  const cols = Array.from({length:n}, () => { const c = document.createElement("div"); c.className="col"; wall.appendChild(c); return c; });
+  list.forEach((j,i) => {
+    const el = document.createElement("article");
+    el.className = "card";
+    el.style.setProperty("--tilt", ((hash(j.id)*5)-2.5).toFixed(2)+"deg");
+    el.style.setProperty("--i", i);
+    const c = COLORS[j.id % COLORS.length];
+    el.innerHTML = `
+      <div class="meta">${metaHTML(j)}</div>
+      <p class="joke ${j.lang==="zh"?"zh":""}">${esc(j.text)}</p>
+      ${j.note ? `<p class="note">${esc(j.note)}</p>` : ""}
+      <div class="cover" style="--c:${c}">
+        <span class="corner">#${String(j.id).padStart(3,"0")} · ${esc(j.country)}</span>
+        <svg class="star" viewBox="0 0 100 100"><path d="M50 5 L62 38 L95 50 L62 62 L50 95 L38 62 L5 50 L38 38 Z" fill="#fff" stroke="#141414" stroke-width="6" stroke-linejoin="round"/></svg>
+        <span class="big">${EMOJI[j.topic] ? "?" : "?"}</span>
+        <span class="hint">${EMOJI[j.topic]||"✨"} ${esc(j.topic)} · 点我</span>
+      </div>`;
+    el.addEventListener("click", () => el.classList.add("open"));
+    cols.reduce((a,b) => b.offsetHeight < a.offsetHeight ? b : a).appendChild(el);
+  });
+  if(!list.length) wall.innerHTML = `<div class="empty">这里还没有贴纸。</div>`;
+  countEl.textContent = `${list.length} / ${jokes.length} 条`;
+}
+
+function buildChips(){
+  const langs = [...new Set(jokes.map(j=>j.lang))];
+  const topics = [...new Set(jokes.map(j=>j.topic))];
+  const mk = (k,v,label) => {
+    const b = document.createElement("button");
+    b.className = "chip"; b.dataset.k = k; b.dataset.v = v; b.textContent = label;
+    return b;
+  };
+  const anchor = document.getElementById("shuffle");
+  langs.forEach(l => bar.insertBefore(mk("lang", l, LANG[l]||l), anchor));
+  const sep = document.createElement("span"); sep.className="sep"; bar.insertBefore(sep, anchor);
+  topics.forEach(t => bar.insertBefore(mk("topic", t, (EMOJI[t]||"")+" "+t), anchor));
+}
+
+bar.addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if(!b || b.id==="shuffle") return;
+  bar.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on");
+  filter = b.dataset.k==="all" ? {k:"all",v:null} : {k:b.dataset.k, v:b.dataset.v};
+  render();
+});
+
+/* 随机弹窗 */
+const modal = document.getElementById("modal");
+function showRandom(){
+  const j = jokes[Math.floor(Math.random()*jokes.length)];
+  document.getElementById("mmeta").innerHTML = metaHTML(j);
+  const mj = document.getElementById("mjoke");
+  mj.textContent = j.text; mj.className = "joke " + (j.lang==="zh"?"zh":"");
+  const mn = document.getElementById("mnote");
+  mn.hidden = !j.note; mn.textContent = j.note || "";
+  modal.classList.add("show");
+}
+document.getElementById("shuffle").onclick = showRandom;
+document.getElementById("again").onclick = showRandom;
+document.getElementById("close").onclick = () => modal.classList.remove("show");
+modal.addEventListener("click", e => { if(e.target===modal) modal.classList.remove("show"); });
+document.addEventListener("keydown", e => { if(e.key==="Escape") modal.classList.remove("show"); });
+let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(render, 150); });
+
+fetch("jokes.json").then(r=>r.json()).then(d => {
+  jokes = d.slice().sort((a,b)=> b.date.localeCompare(a.date) || b.id-a.id);
+  buildChips(); render();
+}).catch(err => {
+  wall.innerHTML = `<div class="empty">读不到 jokes.json：${esc(err.message)}<br>本地预览请用 http 服务器打开，不要直接双击文件。</div>`;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+[
+  {
+    "id": 1,
+    "text": "有一只企鹅，它很冷。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "动物",
+    "date": "2026-10-20",
+    "note": "最经典的冷笑话：笑点就是没有笑点。"
+  },
+  {
+    "id": 2,
+    "text": "两个番茄过马路，一个被车撞了。另一个说：番茄酱！",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "食物",
+    "date": "2026-10-20"
+  },
+  {
+    "id": 3,
+    "text": "什么动物最爱贴在墙上？\n海豹。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "动物",
+    "date": "2026-10-21",
+    "note": "海豹 ≈ 海报。"
+  },
+  {
+    "id": 4,
+    "text": "什么蛋不能吃？\n脸蛋。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "食物",
+    "date": "2026-10-21"
+  },
+  {
+    "id": 5,
+    "text": "为什么企鹅的肚子是白的？\n因为它手太短，洗不到背。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "动物",
+    "date": "2026-10-22"
+  },
+  {
+    "id": 6,
+    "text": "一个人去钓鱼，钓到一条鱼。鱼说：放了我吧，我帮你实现一个愿望。\n那人想了想：我想要一条鱼。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "日常",
+    "date": "2026-10-22"
+  },
+  {
+    "id": 7,
+    "text": "老师：谁能用“果然”造句？\n小明：先吃水果，然后喝水。\n老师：不对，再来一个。\n小明：我吃了水果，然后又吃了水果。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "语言",
+    "date": "2026-10-23"
+  },
+  {
+    "id": 8,
+    "text": "医生：你这个病不用吃药。\n病人：那怎么办？\n医生：吃了也没用。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "职业",
+    "date": "2026-10-23"
+  },
+  {
+    "id": 9,
+    "text": "小鸭对小鸡说：我喜欢你。\n小鸡说：你 duck 不必。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "动物",
+    "date": "2026-10-24",
+    "note": "duck ≈ 大可。"
+  },
+  {
+    "id": 10,
+    "text": "面试官：你有什么优点？\n老王：我老实。\n面试官：缺点呢？\n老王：我说谎。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "职业",
+    "date": "2026-10-24"
+  },
+  {
+    "id": 11,
+    "text": "什么东西越洗越脏？\n水。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "日常",
+    "date": "2026-10-25"
+  },
+  {
+    "id": 12,
+    "text": "一个西瓜在路上滚，撞到一块石头：哎呀，我裂开了。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "食物",
+    "date": "2026-10-25"
+  },
+  {
+    "id": 13,
+    "text": "I'm reading a book about anti-gravity. It's impossible to put down.",
+    "lang": "en",
+    "country": "US",
+    "topic": "科学",
+    "date": "2026-10-20",
+    "note": "put down 既是“放下”也是“贬低”，反重力的书放不下。"
+  },
+  {
+    "id": 14,
+    "text": "Time flies like an arrow. Fruit flies like a banana.",
+    "lang": "en",
+    "country": "US",
+    "topic": "语言",
+    "date": "2026-10-21",
+    "note": "第二句读作“果蝇喜欢香蕉”。"
+  },
+  {
+    "id": 15,
+    "text": "Why don't skeletons fight each other?\nThey don't have the guts.",
+    "lang": "en",
+    "country": "UK",
+    "topic": "日常",
+    "date": "2026-10-21",
+    "note": "guts 既是“内脏”也是“胆量”。"
+  },
+  {
+    "id": 16,
+    "text": "A man walked into a bar.\nOuch.",
+    "lang": "en",
+    "country": "UK",
+    "topic": "语言",
+    "date": "2026-10-22",
+    "note": "bar 既是“酒吧”也是“横杆”。"
+  },
+  {
+    "id": 17,
+    "text": "Parallel lines have so much in common. It's a shame they'll never meet.",
+    "lang": "en",
+    "country": "US",
+    "topic": "数学",
+    "date": "2026-10-23"
+  },
+  {
+    "id": 18,
+    "text": "I'd tell you a chemistry joke, but I know I wouldn't get a reaction.",
+    "lang": "en",
+    "country": "US",
+    "topic": "科学",
+    "date": "2026-10-23"
+  },
+  {
+    "id": 19,
+    "text": "Did you hear about the claustrophobic astronaut?\nHe just needed a little space.",
+    "lang": "en",
+    "country": "UK",
+    "topic": "科学",
+    "date": "2026-10-24"
+  },
+  {
+    "id": 20,
+    "text": "What do you call a fish with no eyes?\nA fsh.",
+    "lang": "en",
+    "country": "US",
+    "topic": "动物",
+    "date": "2026-10-25",
+    "note": "eyes ≈ i's，没有 i 的 fish。"
+  },
+  {
+    "id": 21,
+    "text": "Why did the scarecrow win an award?\nHe was outstanding in his field.",
+    "lang": "en",
+    "country": "US",
+    "topic": "职业",
+    "date": "2026-10-26",
+    "note": "outstanding in his field：既是“在他的领域很杰出”，也是“站在他的田里”。"
+  },
+  {
+    "id": 22,
+    "text": "I'm on a seafood diet. I see food and I eat it.",
+    "lang": "en",
+    "country": "UK",
+    "topic": "食物",
+    "date": "2026-10-26"
+  },
+  {
+    "id": 23,
+    "text": "布団が吹っ飛んだ。",
+    "lang": "ja",
+    "country": "JP",
+    "topic": "语言",
+    "date": "2026-10-27",
+    "note": "futon ga futtonda，“被子飞走了”。日语谐音冷笑话（ダジャレ）的代表作。"
+  },
+  {
+    "id": 24,
+    "text": "Was macht ein Clown im Büro?\nFaxen.",
+    "lang": "de",
+    "country": "DE",
+    "topic": "职业",
+    "date": "2026-10-27",
+    "note": "Faxen 既是“发传真”也是“胡闹”。"
+  },
+  {
+    "id": 25,
+    "text": "Pourquoi les poissons détestent l'ordinateur ?\nIls ont peur du net.",
+    "lang": "fr",
+    "country": "FR",
+    "topic": "动物",
+    "date": "2026-10-27",
+    "note": "net 既是“网络”也是“渔网”。"
+  },
+  {
+    "id": 26,
+    "text": "¿Qué le dice un jaguar a otro jaguar?\nJaguar you.",
+    "lang": "es",
+    "country": "ES",
+    "topic": "动物",
+    "date": "2026-10-27",
+    "note": "Jaguar you ≈ How are you。"
+  }
+]
