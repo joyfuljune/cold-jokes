@@ -100,7 +100,7 @@ img{display:block}
 @keyframes spark{from{transform:translate(-50%,-50%) scale(.3)}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.1) rotate(180deg);opacity:0}}
 
 /* 投币：硬币按钮 + 数字；点了之后投币口冒出来，爪子拿币塞进去 */
-.like{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;position:relative}
+.like{display:flex;align-items:center;justify-content:flex-start;gap:10px;margin-top:10px;padding-left:6%;position:relative}
 .coin{appearance:none;border:0;background:none;padding:0;width:46px;height:46px;position:relative;cursor:pointer;transition:transform .15s var(--bounce)}
 .coin img{width:100%;height:100%;filter:drop-shadow(3px 3px 0 var(--ink))}
 .coin:hover{transform:translateY(-3px) rotate(-10deg)}
@@ -108,14 +108,14 @@ img{display:block}
 @keyframes bump{30%{transform:scale(1.3) rotate(15deg)}}
 .likecount{font-family:var(--display);font-size:20px;line-height:1;background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:5px 11px;box-shadow:2px 2px 0 var(--ink);min-width:46px;text-align:center}
 .likecount.up{animation:bump .35s var(--bounce)}
-.slot{position:absolute;right:19%;bottom:19%;width:58px;height:84px;transform:scale(0);transform-origin:bottom right;transition:transform .4s var(--bounce);z-index:5;pointer-events:none}
+.slot{position:absolute;right:13%;bottom:22%;width:96px;height:50px;transform:scale(0);transform-origin:bottom right;transition:transform .4s var(--bounce);z-index:5;pointer-events:none}
 .slot img{width:100%;height:100%;filter:drop-shadow(4px 4px 0 var(--ink))}
 .slot.show{transform:scale(1)}
 .slot.eat{animation:eat .45s ease-in-out}
 @keyframes eat{30%{transform:scale(1.08,.92)}60%{transform:scale(.96,1.06)}}
-.pawcoin{position:absolute;width:88px;height:190px;z-index:6;pointer-events:none;left:0;top:0}
-.pawcoin .paw{position:absolute;left:0;top:40px;width:88px;height:144px;background:url('img/pawbig.png') center/contain no-repeat;filter:drop-shadow(4px 4px 0 var(--ink))}
-.pawcoin .pc{position:absolute;left:19px;top:0;width:50px;height:50px;background:url('img/coin.png') center/contain no-repeat;filter:drop-shadow(3px 3px 0 var(--ink))}
+.pawcoin{position:absolute;width:96px;height:130px;z-index:6;pointer-events:none;left:0;top:0}
+.pawcoin .paw{position:absolute;left:0;top:30px;width:96px;height:100px;background:url('img/pawbig.png?v=2') center/contain no-repeat;filter:drop-shadow(4px 4px 0 var(--ink))}
+.pawcoin .pc{position:absolute;left:23px;top:0;width:50px;height:50px;background:url('img/coin.png') center/contain no-repeat;filter:drop-shadow(3px 3px 0 var(--ink))}
 .plusone{position:absolute;z-index:7;pointer-events:none;font-family:var(--display);font-size:24px;color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink);animation:rise 1s ease-out forwards}
 @keyframes rise{from{transform:translate(-50%,0) scale(.6);opacity:0}30%{opacity:1}to{transform:translate(-50%,-70px) scale(1.2);opacity:0}}
 
@@ -194,9 +194,9 @@ const COLORS = ["#e8f500","#00e676","#5eead4","#f9a8d4","#b197fc","#ff8a3d","#9a
 const TOPIC_COLORS = {"动物":"#00e676","食物":"#ff8a3d","科学":"#9adcf9","语言":"#f9a8d4","职业":"#b197fc","日常":"#e8f500","数学":"#5eead4"};
 const EMOJI = {"动物":"🐧","食物":"🍅","科学":"🧪","语言":"💬","职业":"💼","日常":"☕","数学":"📐"};
 const PICS = ["img/scene.jpg","img/scene2.jpg","img/mid.jpg","img/hallo.jpg","img/hike.jpg","img/hotpot.jpg"];
-const PRELOAD = ["img/hero.png","img/hero_wave.png","img/paw.svg","img/paw-press.svg","img/pawbig.png","img/slot.png","img/coin.png", ...PICS, ...[1,2,3,4,5,6].map(i=>`img/uni${i}.png`)];
-const COIN_SVG = `<img src="img/coin.png" alt="投币">`;
-const SLOT_IMG = `<img src="img/slot.png" alt="">`;
+const PRELOAD = ["img/hero.png","img/hero_wave.png","img/paw.svg","img/paw-press.svg","img/pawbig.png?v=2","img/slot.png?v=2","img/coin.png", ...PICS, ...[1,2,3,4,5,6].map(i=>`img/uni${i}.png`)];
+const COIN_SVG = `<img src="img/coin.png" alt="">`;
+const SLOT_IMG = `<img src="img/slot.png?v=2" alt="">`;
 const PAWCOIN_HTML = `<div class="pc"></div><div class="paw"></div>`;
 
 let jokes = [], filter = {k:"all", v:null};
@@ -219,7 +219,7 @@ function bodyHTML(j){
     <p class="setup">${esc(j.setup)}</p>
     <div class="punchbox"><p class="punch">${esc(j.punch)}</p><span class="tape">${label}</span></div>
     ${j.note ? `<p class="note">${esc(j.note)}</p>` : ""}
-    <div class="like"><button class="coin" data-id="${j.id}" title="投一枚冷币">${COIN_SVG}</button><span class="likecount" data-count="${j.id}">${fake[j.id]}</span></div>
+    <div class="like"><button class="coin" data-id="${j.id}">${COIN_SVG}</button><span class="likecount" data-count="${j.id}">${fake[j.id]}</span></div>
     <p class="bye">再点一下泡泡就炸</p>`;
 }
 function faceHTML(j, a){
@@ -259,11 +259,13 @@ function setupScene(){
   rainC = {x:10+rw*.5, y:4+rw*.3, r:rw*.55};
   return {cx:hx+hw*.5, cy:hy+hh*.8};
 }
+let tick = 0;
 function step(){
+  tick++;
   const n = bodies.length;
   for(const b of bodies){
     if(!b.live) continue;
-    if(b.open){ b.vx *= .6; b.vy *= .6; } else { b.vy -= b.buoy; b.vx += rnd(-.04,.04); b.vy += rnd(-.03,.03); b.vx *= .94; b.vy *= .94; }
+    if(b.open){ b.vx *= .6; b.vy *= .6; } else { b.vy -= b.buoy; b.vx += Math.sin(tick*b.wf + b.wp)*.06 + rnd(-.03,.03); b.vy += rnd(-.03,.03); b.vx *= .94; b.vy *= .94; }
     b.x += b.vx; b.y += b.vy;
     if(b.tr !== b.r){ b.r += (b.tr - b.r)*.25; if(Math.abs(b.tr-b.r)<.5) b.r = b.tr; b.el.style.width = b.el.style.height = (b.r*2)+"px"; b.el.style.setProperty("--d", (b.r*2)+"px"); }
   }
@@ -287,7 +289,7 @@ function step(){
     for(const b of bodies){
       if(!b.live) continue;
       if(b.x < b.r+4){ b.x = b.r+4; b.vx *= -.3; } if(b.x > W-b.r-4){ b.x = W-b.r-4; b.vx *= -.3; }
-      if(b.y < b.r+6){ b.y = b.r+6; b.vy *= -.3; } if(b.y > H-b.r-4){ b.y = H-b.r-4; b.vy *= -.3; }
+      if(b.y < b.r+6){ b.y = b.r+6; b.vy *= -.3; } if(b.y > H-b.r-4 && b.vy >= 0){ b.y = H-b.r-4; b.vy *= -.3; }
     }
   }
   for(const b of bodies){ if(b.live) b.el.style.transform = `translate(${(b.x-b.r).toFixed(1)}px,${(b.y-b.r).toFixed(1)}px)`; }
@@ -310,11 +312,11 @@ function render(){
     el.className = `bubble ${a.kind==="pic"?"pic":""} ${r<42?"small":""} ${j.lang==="zh"?"zh":""}`;
     el.style.cssText = `width:${r*2}px;height:${r*2}px;--d:${r*2}px;--c:${a.color};${a.kind==="pic"?`--img:url('${a.pic}')`:""};--wt:${rnd(4,7).toFixed(1)}s;opacity:0`;
     el.innerHTML = `<div class="wob"></div>${faceHTML(j,a)}<div class="inner"></div>`;
-    const b = {j, a, el, r, tr:r, r0:r, x:o.cx+rnd(-30,30), y:o.cy, vx:rnd(-7,7), vy:rnd(-9,-3), buoy: .05 + (r/r0)*.06*rnd(.5,1.6), live:false, open:false};
+    const b = {j, a, el, r, tr:r, r0:r, x:rnd(r+6, W-r-6), y:H+r+rnd(0,320), vx:rnd(-1.5,1.5), vy:rnd(-9,-1), buoy: rnd(.02,.14) * (0.6 + (r/r0)*.5), wf:rnd(.01,.04), wp:rnd(0,6.28), live:false, open:false};
     el.addEventListener("click", e => onClick(b, e));
     field.appendChild(el); bodies.push(b);
   });
-  shuffle(bodies).forEach((b,i) => setTimeout(() => { b.live = true; b.el.style.opacity = 1; b.el.animate([{transform:`translate(${b.x-b.r}px,${b.y-b.r}px) scale(.1)`},{transform:`translate(${b.x-b.r}px,${b.y-b.r}px) scale(1)`}], {duration:350, easing:"cubic-bezier(.2,1.5,.4,1)"}); }, 700 + i*45));
+  bodies.forEach(b => setTimeout(() => { b.live = true; b.el.style.opacity = 1; }, 400 + rnd(0, 3200)));
   if(!list.length){ const e = document.createElement("div"); e.className="empty"; e.textContent="一个泡泡都没有。"; field.appendChild(e); }
   countEl.textContent = `${list.length} / ${jokes.length} 个泡泡`;
   if(!running){ running = true; loop(); }
@@ -397,19 +399,19 @@ function dropCoin(btn, b){
   requestAnimationFrame(() => slot.classList.add("show"));
   btn.classList.remove("bump"); void btn.offsetWidth; btn.classList.add("bump");
   const D = host.offsetWidth;
-  const sx = D - D*.19 - 29 - 44, sy = D - D*.19 - 84;      // 投币口左上角；爪子举币对准缝的下口
+  const sx = D - D*.13 - 48 - 30, sy = D - D*.22 - 50;      // 投币口左上角；爪子举币对准缝的下口
   const pc = document.createElement("div"); pc.className="pawcoin"; pc.innerHTML = PAWCOIN_HTML;
-  pc.style.left = sx+"px"; pc.style.top = (sy+30)+"px"; host.appendChild(pc);
+  pc.style.left = sx+"px"; pc.style.top = (sy+36)+"px"; host.appendChild(pc);
   const coinG = pc.querySelector(".pc");
   pc.animate([{transform:"translateY(200px) rotate(8deg)", opacity:0},{transform:"translateY(0) rotate(0)", opacity:1}], {duration:480, easing:"cubic-bezier(.2,1.2,.4,1)", fill:"forwards"}).onfinish = () => {
-    coinG.animate([{transform:"translateY(0) scaleX(1)"},{transform:"translateY(-34px) scaleX(.08)", opacity:0}], {duration:300, easing:"ease-in", fill:"forwards"}).onfinish = () => {
+    coinG.animate([{transform:"translateY(0) scaleY(1)"},{transform:"translateY(-30px) scaleY(.08)", opacity:0}], {duration:300, easing:"ease-in", fill:"forwards"}).onfinish = () => {
       slot.classList.remove("eat"); void slot.offsetWidth; slot.classList.add("eat");
       fake[id] = (fake[id]||0) + 1;
       host.querySelectorAll(`.likecount[data-count="${id}"]`).forEach(c => { c.textContent = fake[id]; c.classList.remove("up"); void c.offsetWidth; c.classList.add("up"); });
       const plus = document.createElement("span"); plus.className="plusone"; plus.textContent="+1";
-      plus.style.left = (sx+44) + "px"; plus.style.top = (sy-10) + "px";
+      plus.style.left = (sx+48) + "px"; plus.style.top = (sy-10) + "px";
       host.appendChild(plus); setTimeout(()=>plus.remove(), 1000);
-      burst(host, sx+44, sy+20, 8);
+      burst(host, sx+48, sy+25, 8);
       pc.animate([{transform:"translateY(0)"},{transform:"translateY(220px)", opacity:0}], {duration:400, easing:"ease-in", fill:"forwards"}).onfinish = () => { pc.remove(); coinBusy = false; };
       slot._hide = setTimeout(() => slot.classList.remove("show"), 1400);
     };
