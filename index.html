@@ -333,7 +333,8 @@ function step(){
   }
   for(const b of bodies){ if(b.live) b.el.style.transform = `translate(${(b.x-b.r).toFixed(1)}px,${(b.y-b.r).toFixed(1)}px)`; }
 }
-function loop(){ if(!running) return; step(); requestAnimationFrame(loop); }
+let lastT = 0;
+function loop(t){ if(!running) return; const n = lastT ? clamp(Math.round((t - lastT)/16.7), 1, 4) : 1; lastT = t; for(let i=0;i<n;i++) step(); requestAnimationFrame(loop); }
 
 /* ---------- 吹泡泡 ---------- */
 function render(){
@@ -358,7 +359,7 @@ function render(){
   bodies.forEach(b => setTimeout(() => { b.live = true; b.el.style.opacity = 1; if(AC) SFX.bubbleIn(); }, 400 + rnd(0, 3200)));
   if(!list.length){ const e = document.createElement("div"); e.className="empty"; e.textContent="一个泡泡都没有。"; field.appendChild(e); }
   countEl.textContent = `${list.length} / ${jokes.length} 个泡泡`;
-  if(!running){ running = true; loop(); }
+  if(!running){ running = true; requestAnimationFrame(loop); }
 }
 
 /* ---------- 点泡泡：开 → 揭谜底 → 炸 ---------- */
