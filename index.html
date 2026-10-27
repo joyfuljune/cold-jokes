@@ -296,8 +296,9 @@ function bodyHTML(j){
 function assignCovers(list, cols){
   const STYLES = ["q","scene","uni","q","scene","emoji","uniside","scene","q","uni"];
   const out = [];
-  /* 卡片有宽有窄，索引和格子位置对不准，干脆用滑动窗口：一整行长度内不许重复 */
+  /* 图标类（独角兽贴纸、主题 emoji）整页每张只出现一次；颜色和底纹只有几种，用滑动窗口隔开 */
   const win = (i, n) => out.slice(Math.max(0, i-n), i);
+  const usedUni = new Set(), usedEmoji = new Set();
   let lastAlt = true;
   list.forEach((j, i) => {
     const near = win(i, cols+1);
@@ -309,8 +310,14 @@ function assignCovers(list, cols){
     };
     const color = tryPick(COLORS, 1, v => near.some(n => n.color===v));
     const pat = tryPick(PATTERNS, 3, v => win(i,2).some(n => n.pat===v));
-    const style = tryPick(STYLES, 5, v => win(i,cols-1).some(n => n.style===v) || (v.startsWith("uni") && far.some(n => n.style.startsWith("uni"))));
-    const uni = tryPick([1,2,3,4,5,6], 7, v => win(i,5).some(n => n.uni===v));
+    let style = tryPick(STYLES, 5, v => win(i,cols-1).some(n => n.style===v)
+      || (v.startsWith("uni") && (usedUni.size>=6 || far.some(n => n.style.startsWith("uni"))))
+      || (v==="emoji" && usedEmoji.has(j.topic)));
+    if(style.startsWith("uni") && usedUni.size>=6) style = "q";
+    if(style==="emoji" && usedEmoji.has(j.topic)) style = "q";
+    let uni = 0;
+    if(style.startsWith("uni")){ uni = tryPick([1,2,3,4,5,6], 7, v => usedUni.has(v)); usedUni.add(uni); }
+    if(style==="emoji") usedEmoji.add(j.topic);
     const alt = style==="scene" ? (lastAlt = !lastAlt) : false;
     out.push({color, pat, style, uni, alt, px: Math.round(hash(j.id,21)*100), py: Math.round(hash(j.id,22)*100), pz: 180 + Math.round(hash(j.id,23)*120)});
   });
@@ -418,7 +425,7 @@ function render(){
   wall.innerHTML = "";
   const cols = Math.max(1, Math.floor((wall.clientWidth + 24) / 274));
   const covers = assignCovers(list, cols);
-  let i = 0, t = 0, lastTile = -1;
+  let i = 0, t = 0; const usedTiles = new Set();
   list.forEach((j, idx) => {
     const el = document.createElement("article");
     el.className = `card ${pick(ANIMS, j.id, 13)} ${sizeClass(j)} ${j.lang==="zh"?"zh":""}`;
@@ -446,7 +453,7 @@ function render(){
       const tile = document.createElement("div"); tile.className = "tile";
       tile.style.setProperty("--tilt", ((hash(idx,21)*30)-15).toFixed(1)+"deg");
       tile.style.setProperty("--i", i++);
-      let k = Math.floor(hash(idx,35)*TILES.length); if(k===lastTile) k = (k+1)%TILES.length; lastTile = k;
+      let k = Math.floor(hash(idx,35)*TILES.length); while(usedTiles.has(k)) k = (k+1)%TILES.length; usedTiles.add(k);
       tile.innerHTML = `<img src="${TILES[k]}" alt="">`;
       wall.appendChild(tile);
     }
