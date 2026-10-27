@@ -30,7 +30,7 @@ img{display:block}
 .loader{position:fixed;inset:0;z-index:100;background:var(--lime);background-image:inherit;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
 .loader.off{opacity:0;visibility:hidden}
 .loader .box{background:var(--cream);border:4px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--ink);padding:28px 34px;display:flex;flex-direction:column;align-items:center;gap:16px;transform:rotate(-2deg)}
-.loader img{width:120px;animation:hop .7s ease-in-out infinite alternate}
+.loader img{width:110px;filter:drop-shadow(4px 4px 0 rgba(20,20,20,.85));animation:hop .7s ease-in-out infinite alternate}
 @keyframes hop{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-16px) rotate(6deg)}}
 .loader .txt{font-family:var(--zh);font-size:24px}
 .loader .bar{width:240px;height:22px;border:3px solid var(--ink);border-radius:999px;background:#fff;overflow:hidden}
@@ -163,7 +163,7 @@ body .card.open,body .punchbox.shown{cursor:url("img/paw.svg") 6 6, auto}
 
 <div class="loader" id="loader">
   <div class="box">
-    <img src="img/uni4.png" alt="">
+    <img src="img/hero_wave.png" alt="">
     <div class="txt">石头搬运中…</div>
     <div class="bar"><i id="bar"></i></div>
   </div>

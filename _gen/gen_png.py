@@ -26,8 +26,11 @@ item = d['data'][0]
 if item.get('b64_json'):
     open(out, 'wb').write(base64.b64decode(item['b64_json']))
 elif item.get('url'):
-    with urllib.request.urlopen(item['url'], timeout=300) as f:
-        open(out, 'wb').write(f.read())
+    rq = urllib.request.Request(item['url'], headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/130.0 Safari/537.36'})
+    with urllib.request.urlopen(rq, timeout=300) as f:
+        data = f.read()
+    with open(out, 'wb') as fh:
+        fh.write(data)
 else:
     raise SystemExit('no image: ' + json.dumps({k: v for k, v in item.items() if k != 'b64_json'})[:500])
 print('saved', out, f'{time.time() - t0:.0f}s')
