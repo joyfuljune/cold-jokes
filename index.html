@@ -21,13 +21,13 @@
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
-body{font-family:var(--body);color:var(--ink);background-color:var(--lime);
-  background-image:linear-gradient(rgba(20,20,20,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,20,.07) 1px,transparent 1px);
-  background-size:36px 36px;overflow:hidden}
+body{font-family:var(--body);color:var(--ink);background-color:#faf6ea;
+  background-image:radial-gradient(#c9c0a7 1.2px,transparent 1.3px);
+  background-size:22px 22px;overflow:hidden}
 img{display:block}
 
 /* ---------- 加载 ---------- */
-.loader{position:fixed;inset:0;z-index:100;background:var(--lime);background-image:inherit;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
+.loader{position:fixed;inset:0;z-index:100;background:#faf6ea;background-image:radial-gradient(#c9c0a7 1.2px,transparent 1.3px);background-size:22px 22px;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
 .loader.off{opacity:0;visibility:hidden}
 .loader .box{background:var(--cream);border:4px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--ink);padding:28px 34px;display:flex;flex-direction:column;align-items:center;gap:16px;transform:rotate(-2deg)}
 .loader img{width:110px;filter:drop-shadow(4px 4px 0 rgba(20,20,20,.85));animation:hop .7s ease-in-out infinite alternate}
@@ -51,36 +51,37 @@ img{display:block}
 
 /* ---------- 泡泡 ---------- */
 .bubble{position:absolute;left:0;top:0;z-index:4;border-radius:50%;cursor:pointer;will-change:transform;
-  border:3px solid var(--ink);
-  background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.95) 0, rgba(255,255,255,.4) 16%, var(--c) 48%, var(--c) 86%, rgba(20,20,20,.18) 100%);
-  box-shadow:inset -6px -8px 0 rgba(20,20,20,.08), 4px 5px 0 rgba(20,20,20,.55)}
-.bubble::before{content:"";position:absolute;left:14%;top:9%;width:30%;height:18%;border-radius:50%;background:#fff;transform:rotate(-30deg);opacity:.9;pointer-events:none}
-.bubble::after{content:"";position:absolute;right:16%;bottom:12%;width:12%;height:8%;border-radius:50%;background:#fff;opacity:.7;pointer-events:none}
-.bubble.pic{background-image:var(--img);background-size:cover;background-position:center}
-.bubble.pic .tint{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.75) 0, rgba(255,255,255,.1) 30%, rgba(255,255,255,0) 55%, rgba(20,20,20,.2) 100%);pointer-events:none}
+  border:4px solid var(--ink);background:var(--c);
+  box-shadow:6px 6px 0 var(--ink)}
+.bubble::before{content:"";position:absolute;left:16%;top:11%;width:26%;height:14%;border-radius:50%;background:#fff;border:3px solid var(--ink);transform:rotate(-32deg);pointer-events:none}
+.bubble.small::before{border-width:2px}
+.bubble.pic{background:var(--img) center/cover no-repeat}
+.bubble.pic::before{display:none}
+.bubble.pic .tint{display:none}
 .bubble .face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4%;pointer-events:none}
-.bubble .big{font-family:var(--display);font-size:calc(var(--d) * .42);line-height:1;color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink)}
+.bubble .big{font-family:var(--display);font-size:calc(var(--d) * .42);line-height:1;color:#fff;-webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
 .bubble .uni{height:52%;width:auto;filter:drop-shadow(3px 3px 0 rgba(20,20,20,.8))}
-.bubble .hint{font-weight:800;font-size:max(10px,calc(var(--d) * .09));background:var(--cream);border:2.5px solid var(--ink);border-radius:999px;padding:3px 8px;box-shadow:2px 2px 0 var(--ink);white-space:nowrap}
+.bubble .hint{font-weight:800;font-size:max(10px,calc(var(--d) * .09));background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:3px 8px;box-shadow:3px 3px 0 var(--ink);white-space:nowrap}
 .bubble.small .hint{display:none}
 .bubble .wob{position:absolute;inset:-3px;border-radius:50%;animation:wob var(--wt,5s) ease-in-out infinite;pointer-events:none}
 @keyframes wob{0%,100%{transform:scale(1,1)}25%{transform:scale(1.025,.975)}50%{transform:scale(.98,1.02)}75%{transform:scale(1.015,.985)}}
 
 /* 打开的泡泡 */
-.bubble.open{z-index:30;background:radial-gradient(circle at 32% 28%, #fff 0, rgba(255,255,255,.9) 30%, var(--c) 100%);box-shadow:inset -8px -10px 0 rgba(20,20,20,.08), 6px 7px 0 var(--ink)}
+.bubble.open{z-index:30;background:var(--cream);box-shadow:9px 9px 0 var(--ink)}
+.bubble.open::before{display:none}
 .bubble.open .face{display:none}
-.bubble .inner{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74%;height:74%;overflow:hidden;flex-direction:column;justify-content:center}
+.bubble .inner{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--iw,300px);flex-direction:column;justify-content:center}
 .bubble.open .inner{display:flex}
-.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;font-weight:800;margin-bottom:8px;justify-content:center}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;font-weight:800;margin-bottom:10px;justify-content:center}
 .pill{border:2.5px solid var(--ink);border-radius:999px;padding:3px 8px;background:#fff;box-shadow:2px 2px 0 var(--ink);line-height:1}
 .pill.cc{font-family:ui-monospace,Consolas,monospace;letter-spacing:.08em;background:var(--sky)}
 .pill.topic{background:var(--topic,var(--neon))}
 .date{font-family:ui-monospace,Consolas,monospace;font-size:10px;opacity:.65}
-.setup{font-size:15px;line-height:1.5;white-space:pre-line;font-weight:700;margin:0;text-align:center}
-.zh .setup{font-size:16px}
+.setup{font-size:18px;line-height:1.55;white-space:pre-line;font-weight:800;margin:0;text-align:center}
+.zh .setup{font-size:20px}
 .punchbox{position:relative;margin-top:10px;border:3px solid var(--ink);border-radius:14px;background:#fff;padding:9px 12px;transition:background .3s}
-.punch{margin:0;font-size:16px;line-height:1.45;font-weight:800;white-space:pre-line;filter:blur(7px);transform:scale(.92);transition:filter .5s,transform .5s var(--bounce);user-select:none;text-align:center}
-.zh .punch{font-size:17px}
+.punch{margin:0;font-size:19px;line-height:1.45;font-weight:800;white-space:pre-line;filter:blur(7px);transform:scale(.92);transition:filter .5s,transform .5s var(--bounce);user-select:none;text-align:center}
+.zh .punch{font-size:21px}
 .tape{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);background:var(--neon);border:3px solid var(--ink);border-radius:8px;padding:6px 12px;font:800 13px/1 var(--body);box-shadow:3px 3px 0 var(--ink);white-space:nowrap;transition:transform .55s var(--bounce),opacity .4s}
 .tape::before,.tape::after{content:"";position:absolute;top:-8px;width:30px;height:12px;background:rgba(255,255,255,.55);border:2px solid var(--ink);transform:rotate(-30deg);left:-10px}
 .tape::after{left:auto;right:-10px;transform:rotate(30deg)}
@@ -89,7 +90,7 @@ img{display:block}
 .punchbox.shown{background:var(--neon)}
 .punchbox.shown .punch{filter:blur(0);transform:scale(1);user-select:auto}
 .punchbox.shown .tape{transform:translate(-50%,-50%) translateY(-60px) rotate(25deg) scale(.6);opacity:0;pointer-events:none}
-.note{margin:8px 0 0;font-size:12px;line-height:1.4;background:#fff;border:2.5px dashed var(--ink);border-radius:10px;padding:6px 9px}
+.note{margin:10px 0 0;font-size:13px;line-height:1.45;background:#fff;border:2.5px dashed var(--ink);border-radius:10px;padding:6px 9px}
 .note::before{content:"笑点 → ";font-weight:800}
 .punchbox:not(.shown) + .note{display:none}
 .bye{margin:8px 0 0;font-size:11px;font-weight:800;opacity:.55;text-align:center}
@@ -100,20 +101,21 @@ img{display:block}
 
 /* 投币：硬币按钮 + 数字；点了之后投币口冒出来，爪子拿币塞进去 */
 .like{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;position:relative}
-.coin{appearance:none;border:0;background:none;padding:0;width:40px;height:40px;position:relative;cursor:pointer;transition:transform .15s var(--bounce)}
-.coin svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(3px 3px 0 var(--ink))}
+.coin{appearance:none;border:0;background:none;padding:0;width:46px;height:46px;position:relative;cursor:pointer;transition:transform .15s var(--bounce)}
+.coin img{width:100%;height:100%;filter:drop-shadow(3px 3px 0 var(--ink))}
 .coin:hover{transform:translateY(-3px) rotate(-10deg)}
 .coin.bump{animation:bump .4s var(--bounce)}
 @keyframes bump{30%{transform:scale(1.3) rotate(15deg)}}
 .likecount{font-family:var(--display);font-size:20px;line-height:1;background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:5px 11px;box-shadow:2px 2px 0 var(--ink);min-width:46px;text-align:center}
 .likecount.up{animation:bump .35s var(--bounce)}
-.slot{position:absolute;right:17%;bottom:15%;width:72px;height:52px;transform:scale(0);transform-origin:bottom right;transition:transform .4s var(--bounce);z-index:5;pointer-events:none}
-.slot svg{width:100%;height:100%;overflow:visible}
+.slot{position:absolute;right:19%;bottom:19%;width:58px;height:84px;transform:scale(0);transform-origin:bottom right;transition:transform .4s var(--bounce);z-index:5;pointer-events:none}
+.slot img{width:100%;height:100%;filter:drop-shadow(4px 4px 0 var(--ink))}
 .slot.show{transform:scale(1)}
 .slot.eat{animation:eat .45s ease-in-out}
 @keyframes eat{30%{transform:scale(1.08,.92)}60%{transform:scale(.96,1.06)}}
-.pawcoin{position:absolute;width:64px;height:84px;z-index:6;pointer-events:none;left:0;top:0}
-.pawcoin svg{width:100%;height:100%;overflow:visible}
+.pawcoin{position:absolute;width:88px;height:190px;z-index:6;pointer-events:none;left:0;top:0}
+.pawcoin .paw{position:absolute;left:0;top:40px;width:88px;height:144px;background:url('img/pawbig.png') center/contain no-repeat;filter:drop-shadow(4px 4px 0 var(--ink))}
+.pawcoin .pc{position:absolute;left:19px;top:0;width:50px;height:50px;background:url('img/coin.png') center/contain no-repeat;filter:drop-shadow(3px 3px 0 var(--ink))}
 .plusone{position:absolute;z-index:7;pointer-events:none;font-family:var(--display);font-size:24px;color:#fff;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:3px 3px 0 var(--ink);animation:rise 1s ease-out forwards}
 @keyframes rise{from{transform:translate(-50%,0) scale(.6);opacity:0}30%{opacity:1}to{transform:translate(-50%,-70px) scale(1.2);opacity:0}}
 
@@ -122,7 +124,7 @@ img{display:block}
 @keyframes dropfly{from{transform:translate(0,0) scale(1);opacity:1}to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
 
 /* ---------- 底部筛选条 ---------- */
-.dock{position:fixed;left:0;right:0;bottom:0;height:var(--dock);z-index:40;background:var(--cream);border-top:3px solid var(--ink);padding:0 14px;display:flex;gap:9px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.dock{position:fixed;left:0;right:0;bottom:0;height:var(--dock);z-index:40;background:#fff;border-top:4px solid var(--ink);padding:0 14px;display:flex;gap:9px;align-items:center;overflow-x:auto;scrollbar-width:none}
 .dock::-webkit-scrollbar{display:none}
 .chip{appearance:none;cursor:pointer;font:800 13px/1 var(--body);color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:999px;padding:8px 13px;box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s,background .15s;white-space:nowrap;flex:0 0 auto}
 .chip:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
@@ -188,16 +190,14 @@ body a,body button,body .chip,body .bubble,body .coin{cursor:url("img/paw-press.
 
 <script>
 const LANG = {zh:"中文",en:"English",fr:"Français"};
-const COLORS = ["rgba(232,245,0,.85)","rgba(0,230,118,.75)","rgba(94,234,212,.8)","rgba(249,168,212,.85)","rgba(177,151,252,.8)","rgba(255,138,61,.75)","rgba(154,220,249,.85)","rgba(255,255,255,.8)"];
+const COLORS = ["#e8f500","#00e676","#5eead4","#f9a8d4","#b197fc","#ff8a3d","#9adcf9","#fff"];
 const TOPIC_COLORS = {"动物":"#00e676","食物":"#ff8a3d","科学":"#9adcf9","语言":"#f9a8d4","职业":"#b197fc","日常":"#e8f500","数学":"#5eead4"};
 const EMOJI = {"动物":"🐧","食物":"🍅","科学":"🧪","语言":"💬","职业":"💼","日常":"☕","数学":"📐"};
 const PICS = ["img/scene.jpg","img/scene2.jpg","img/mid.jpg","img/hallo.jpg","img/hike.jpg","img/hotpot.jpg"];
-const PRELOAD = ["img/hero.png","img/hero_wave.png","img/paw.svg","img/paw-press.svg", ...PICS, ...[1,2,3,4,5,6].map(i=>`img/uni${i}.png`)];
-const COIN_SVG = `<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#e8f500" stroke="#141414" stroke-width="3"/><circle cx="20" cy="20" r="11.5" fill="none" stroke="#141414" stroke-width="2.2" stroke-dasharray="3 3"/><text x="20" y="25" text-anchor="middle" font-family="ZCOOL KuaiLe, Microsoft YaHei, sans-serif" font-size="14" font-weight="700" fill="#141414">冷</text></svg>`;
-/* 游戏机投币口：面板 + 竖缝 + 小箭头，没有文字 */
-const SLOT_SVG = `<svg viewBox="0 0 72 52"><rect x="2" y="10" width="68" height="40" rx="10" fill="#b197fc" stroke="#141414" stroke-width="3"/><rect x="10" y="17" width="52" height="26" rx="7" fill="#fff" stroke="#141414" stroke-width="2.5"/><rect x="32" y="20" width="8" height="20" rx="3" fill="#141414"/><rect x="34" y="22" width="4" height="16" rx="2" fill="#5eead4"/><path d="M36 1 l6 7 h-12 z" fill="#ff8a3d" stroke="#141414" stroke-width="2" stroke-linejoin="round"/><circle cx="16" cy="30" r="3" fill="#e8f500" stroke="#141414" stroke-width="1.5"/><circle cx="56" cy="30" r="3" fill="#e8f500" stroke="#141414" stroke-width="1.5"/></svg>`;
-/* 爪子举着币 */
-const PAWCOIN_SVG = `<svg viewBox="0 0 64 84"><g class="pc"><circle cx="32" cy="18" r="15" fill="#e8f500" stroke="#141414" stroke-width="3"/><circle cx="32" cy="18" r="10" fill="none" stroke="#141414" stroke-width="2" stroke-dasharray="3 3"/><text x="32" y="23" text-anchor="middle" font-family="ZCOOL KuaiLe, Microsoft YaHei, sans-serif" font-size="12" font-weight="700" fill="#141414">冷</text></g><g transform="translate(8,30) scale(1.5)"><g stroke="#141414" stroke-width="2.2" stroke-linejoin="round"><ellipse cx="7" cy="11" rx="3.6" ry="4.4" fill="#fff" transform="rotate(-18 7 11)"/><ellipse cx="15" cy="6.5" rx="3.6" ry="4.4" fill="#fff"/><ellipse cx="23.5" cy="10" rx="3.6" ry="4.4" fill="#fff" transform="rotate(18 23.5 10)"/><path d="M5.5 21.5 C5.5 15.5 26.5 15.5 26.5 21.5 C26.5 27.5 21 30.5 16 30.5 C11 30.5 5.5 27.5 5.5 21.5 Z" fill="#fff"/></g><ellipse cx="7" cy="11" rx="1.6" ry="2.1" fill="#f9a8d4" transform="rotate(-18 7 11)"/><ellipse cx="15" cy="6.5" rx="1.6" ry="2.1" fill="#f9a8d4"/><ellipse cx="23.5" cy="10" rx="1.6" ry="2.1" fill="#f9a8d4" transform="rotate(18 23.5 10)"/><path d="M9.5 22 C9.5 18.5 22.5 18.5 22.5 22 C22.5 25.5 19 27.5 16 27.5 C13 27.5 9.5 25.5 9.5 22 Z" fill="#f9a8d4"/></g></svg>`;
+const PRELOAD = ["img/hero.png","img/hero_wave.png","img/paw.svg","img/paw-press.svg","img/pawbig.png","img/slot.png","img/coin.png", ...PICS, ...[1,2,3,4,5,6].map(i=>`img/uni${i}.png`)];
+const COIN_SVG = `<img src="img/coin.png" alt="投币">`;
+const SLOT_IMG = `<img src="img/slot.png" alt="">`;
+const PAWCOIN_HTML = `<div class="pc"></div><div class="paw"></div>`;
 
 let jokes = [], filter = {k:"all", v:null};
 const fake = {};
@@ -333,8 +333,18 @@ function openBubble(b){
   b.open = true; opened = b;
   b.el.classList.add("open"); b.el.style.zIndex = ++topZ;
   b.el.querySelector(".inner").innerHTML = bodyHTML(b.j);
-  b.tr = Math.min(260, (H-24)/2, (W-24)/2);
   b.vx = b.vy = 0;
+  fitOpen(b);
+}
+/* 内容区宽度固定，量出高度，取能装下这个矩形的最小圆 */
+function fitOpen(b){
+  const rmax = Math.min((H-24)/2, (W-24)/2);
+  const iw = clamp(Math.round(rmax*1.15), 220, 360);
+  const inner = b.el.querySelector(".inner");
+  b.el.style.setProperty("--iw", iw+"px");
+  const h = inner.offsetHeight;
+  const need = Math.sqrt(iw*iw + h*h)/2 + 22;
+  b.tr = clamp(need, 120, rmax);
 }
 function closeBubble(b){
   b.open = false; b.tr = b.r0; b.el.classList.remove("open"); b.el.style.zIndex = "";
@@ -344,7 +354,7 @@ function closeBubble(b){
 function revealPunch(box){
   if(box.classList.contains("drum")) return;
   box.classList.add("drum");
-  setTimeout(() => { box.classList.remove("drum"); box.classList.add("shown"); burst(box); }, 480);
+  setTimeout(() => { box.classList.remove("drum"); box.classList.add("shown"); burst(box); if(opened) fitOpen(opened); }, 480);
 }
 function popBubble(b){
   b.live = false; if(opened===b) opened = null;
@@ -382,25 +392,25 @@ function dropCoin(btn, b){
   if(coinBusy) return; coinBusy = true;
   const host = b.el, id = btn.dataset.id;
   let slot = host.querySelector(".slot");
-  if(!slot){ slot = document.createElement("div"); slot.className="slot"; slot.innerHTML = SLOT_SVG; host.appendChild(slot); }
+  if(!slot){ slot = document.createElement("div"); slot.className="slot"; slot.innerHTML = SLOT_IMG; host.appendChild(slot); }
   clearTimeout(slot._hide);
   requestAnimationFrame(() => slot.classList.add("show"));
   btn.classList.remove("bump"); void btn.offsetWidth; btn.classList.add("bump");
   const D = host.offsetWidth;
-  const sx = D - D*.17 - 36 - 32, sy = D - D*.15 - 52;      // 投币口在圆内右下，缝在面板中上部
-  const pc = document.createElement("div"); pc.className="pawcoin"; pc.innerHTML = PAWCOIN_SVG;
-  pc.style.left = sx+"px"; pc.style.top = (sy+22)+"px"; host.appendChild(pc);
+  const sx = D - D*.19 - 29 - 44, sy = D - D*.19 - 84;      // 投币口左上角；爪子举币对准缝的下口
+  const pc = document.createElement("div"); pc.className="pawcoin"; pc.innerHTML = PAWCOIN_HTML;
+  pc.style.left = sx+"px"; pc.style.top = (sy+30)+"px"; host.appendChild(pc);
   const coinG = pc.querySelector(".pc");
-  pc.animate([{transform:"translateY(120px) rotate(10deg)", opacity:0},{transform:"translateY(0) rotate(0)", opacity:1}], {duration:420, easing:"cubic-bezier(.2,1.2,.4,1)", fill:"forwards"}).onfinish = () => {
-    coinG.animate([{transform:"translateY(0) scaleX(1)"},{transform:"translateY(-22px) scaleX(.1)", opacity:0}], {duration:260, easing:"ease-in", fill:"forwards"}).onfinish = () => {
+  pc.animate([{transform:"translateY(200px) rotate(8deg)", opacity:0},{transform:"translateY(0) rotate(0)", opacity:1}], {duration:480, easing:"cubic-bezier(.2,1.2,.4,1)", fill:"forwards"}).onfinish = () => {
+    coinG.animate([{transform:"translateY(0) scaleX(1)"},{transform:"translateY(-34px) scaleX(.08)", opacity:0}], {duration:300, easing:"ease-in", fill:"forwards"}).onfinish = () => {
       slot.classList.remove("eat"); void slot.offsetWidth; slot.classList.add("eat");
       fake[id] = (fake[id]||0) + 1;
       host.querySelectorAll(`.likecount[data-count="${id}"]`).forEach(c => { c.textContent = fake[id]; c.classList.remove("up"); void c.offsetWidth; c.classList.add("up"); });
       const plus = document.createElement("span"); plus.className="plusone"; plus.textContent="+1";
-      plus.style.left = (sx+36) + "px"; plus.style.top = (sy-6) + "px";
+      plus.style.left = (sx+44) + "px"; plus.style.top = (sy-10) + "px";
       host.appendChild(plus); setTimeout(()=>plus.remove(), 1000);
-      burst(host, sx+36, sy+10, 8);
-      pc.animate([{transform:"translateY(0)"},{transform:"translateY(130px)", opacity:0}], {duration:380, easing:"ease-in", fill:"forwards"}).onfinish = () => { pc.remove(); coinBusy = false; };
+      burst(host, sx+44, sy+20, 8);
+      pc.animate([{transform:"translateY(0)"},{transform:"translateY(220px)", opacity:0}], {duration:400, easing:"ease-in", fill:"forwards"}).onfinish = () => { pc.remove(); coinBusy = false; };
       slot._hide = setTimeout(() => slot.classList.remove("show"), 1400);
     };
   };
