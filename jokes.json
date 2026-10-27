@@ -1,7 +1,18 @@
 [
   {
     "id": 1,
-    "text": "有一只企鹅，它很冷。",
+    "setup": "一年有 365 天，哪一天最长？",
+    "punch": "第 9 天。因为地久天长。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "语言",
+    "date": "2026-10-28",
+    "note": "第九天 ≈ 地久天。"
+  },
+  {
+    "id": 2,
+    "setup": "有一只企鹅，它很冷。",
+    "punch": "（完）",
     "lang": "zh",
     "country": "CN",
     "topic": "动物",
@@ -9,16 +20,18 @@
     "note": "最经典的冷笑话：笑点就是没有笑点。"
   },
   {
-    "id": 2,
-    "text": "两个番茄过马路，一个被车撞了。另一个说：番茄酱！",
+    "id": 3,
+    "setup": "两个番茄过马路，一个被车撞了。另一个指着它大喊：",
+    "punch": "番茄酱！",
     "lang": "zh",
     "country": "CN",
     "topic": "食物",
     "date": "2026-10-20"
   },
   {
-    "id": 3,
-    "text": "什么动物最爱贴在墙上？\n海豹。",
+    "id": 4,
+    "setup": "什么动物最爱贴在墙上？",
+    "punch": "海豹。",
     "lang": "zh",
     "country": "CN",
     "topic": "动物",
@@ -26,48 +39,54 @@
     "note": "海豹 ≈ 海报。"
   },
   {
-    "id": 4,
-    "text": "什么蛋不能吃？\n脸蛋。",
+    "id": 5,
+    "setup": "什么蛋不能吃？",
+    "punch": "脸蛋。",
     "lang": "zh",
     "country": "CN",
     "topic": "食物",
     "date": "2026-10-21"
   },
   {
-    "id": 5,
-    "text": "为什么企鹅的肚子是白的？\n因为它手太短，洗不到背。",
+    "id": 6,
+    "setup": "为什么企鹅的肚子是白的？",
+    "punch": "因为它手太短，洗不到背。",
     "lang": "zh",
     "country": "CN",
     "topic": "动物",
     "date": "2026-10-22"
   },
   {
-    "id": 6,
-    "text": "一个人去钓鱼，钓到一条鱼。鱼说：放了我吧，我帮你实现一个愿望。\n那人想了想：我想要一条鱼。",
+    "id": 7,
+    "setup": "一个人去钓鱼，钓到一条鱼。鱼说：放了我吧，我帮你实现一个愿望。那人想了想说：",
+    "punch": "我想要一条鱼。",
     "lang": "zh",
     "country": "CN",
     "topic": "日常",
     "date": "2026-10-22"
   },
   {
-    "id": 7,
-    "text": "老师：谁能用“果然”造句？\n小明：先吃水果，然后喝水。\n老师：不对，再来一个。\n小明：我吃了水果，然后又吃了水果。",
+    "id": 8,
+    "setup": "老师：谁能用“果然”造句？\n小明：先吃水果，然后喝水。\n老师：不对，再来一个。\n小明：",
+    "punch": "我吃了水果，然后又吃了水果。",
     "lang": "zh",
     "country": "CN",
     "topic": "语言",
     "date": "2026-10-23"
   },
   {
-    "id": 8,
-    "text": "医生：你这个病不用吃药。\n病人：那怎么办？\n医生：吃了也没用。",
+    "id": 9,
+    "setup": "医生：你这个病不用吃药。\n病人：那怎么办？\n医生：",
+    "punch": "吃了也没用。",
     "lang": "zh",
     "country": "CN",
     "topic": "职业",
     "date": "2026-10-23"
   },
   {
-    "id": 9,
-    "text": "小鸭对小鸡说：我喜欢你。\n小鸡说：你 duck 不必。",
+    "id": 10,
+    "setup": "小鸭对小鸡说：我喜欢你。\n小鸡说：",
+    "punch": "你 duck 不必。",
     "lang": "zh",
     "country": "CN",
     "topic": "动物",
@@ -75,32 +94,127 @@
     "note": "duck ≈ 大可。"
   },
   {
-    "id": 10,
-    "text": "面试官：你有什么优点？\n老王：我老实。\n面试官：缺点呢？\n老王：我说谎。",
+    "id": 11,
+    "setup": "面试官：你有什么优点？\n老王：我老实。\n面试官：缺点呢？\n老王：",
+    "punch": "我说谎。",
     "lang": "zh",
     "country": "CN",
     "topic": "职业",
     "date": "2026-10-24"
   },
   {
-    "id": 11,
-    "text": "什么东西越洗越脏？\n水。",
+    "id": 12,
+    "setup": "什么东西越洗越脏？",
+    "punch": "水。",
     "lang": "zh",
     "country": "CN",
     "topic": "日常",
     "date": "2026-10-25"
   },
   {
-    "id": 12,
-    "text": "一个西瓜在路上滚，撞到一块石头：哎呀，我裂开了。",
+    "id": 13,
+    "setup": "一个西瓜在路上滚，撞到一块石头，它说：",
+    "punch": "哎呀，我裂开了。",
     "lang": "zh",
     "country": "CN",
     "topic": "食物",
     "date": "2026-10-25"
   },
   {
-    "id": 13,
-    "text": "I'm reading a book about anti-gravity. It's impossible to put down.",
+    "id": 14,
+    "setup": "什么门永远关不上？",
+    "punch": "球门。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "日常",
+    "date": "2026-10-27"
+  },
+  {
+    "id": 15,
+    "setup": "什么布剪不断？",
+    "punch": "瀑布。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "语言",
+    "date": "2026-10-27"
+  },
+  {
+    "id": 16,
+    "setup": "什么酒不能喝？",
+    "punch": "碘酒。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "食物",
+    "date": "2026-10-27"
+  },
+  {
+    "id": 17,
+    "setup": "什么水果最忙？",
+    "punch": "芒果。因为它一直在“忙”。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "食物",
+    "date": "2026-10-27",
+    "note": "芒 ≈ 忙。"
+  },
+  {
+    "id": 18,
+    "setup": "什么马不用吃草？",
+    "punch": "海马。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "动物",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 19,
+    "setup": "飞机飞得那么高，为什么不会撞到星星？",
+    "punch": "因为星星会闪。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "科学",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 20,
+    "setup": "什么东西有头无脚？",
+    "punch": "砖头。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "语言",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 21,
+    "setup": "什么东西只往上升，从不往下降？",
+    "punch": "年龄。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "日常",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 22,
+    "setup": "一只企鹅走进酒吧，问老板：你见过我哥吗？\n老板：你哥长什么样？\n企鹅：",
+    "punch": "……跟我长得一样。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "动物",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 23,
+    "setup": "小明为什么上学总是迟到？",
+    "punch": "因为路口的牌子写着“学校，慢行”。",
+    "lang": "zh",
+    "country": "CN",
+    "topic": "日常",
+    "date": "2026-10-28"
+  },
+  {
+    "id": 24,
+    "setup": "I'm reading a book about anti-gravity.",
+    "punch": "It's impossible to put down.",
     "lang": "en",
     "country": "US",
     "topic": "科学",
@@ -108,8 +222,9 @@
     "note": "put down 既是“放下”也是“贬低”，反重力的书放不下。"
   },
   {
-    "id": 14,
-    "text": "Time flies like an arrow. Fruit flies like a banana.",
+    "id": 25,
+    "setup": "Time flies like an arrow.",
+    "punch": "Fruit flies like a banana.",
     "lang": "en",
     "country": "US",
     "topic": "语言",
@@ -117,8 +232,9 @@
     "note": "第二句读作“果蝇喜欢香蕉”。"
   },
   {
-    "id": 15,
-    "text": "Why don't skeletons fight each other?\nThey don't have the guts.",
+    "id": 26,
+    "setup": "Why don't skeletons fight each other?",
+    "punch": "They don't have the guts.",
     "lang": "en",
     "country": "UK",
     "topic": "日常",
@@ -126,8 +242,9 @@
     "note": "guts 既是“内脏”也是“胆量”。"
   },
   {
-    "id": 16,
-    "text": "A man walked into a bar.\nOuch.",
+    "id": 27,
+    "setup": "A man walked into a bar.",
+    "punch": "Ouch.",
     "lang": "en",
     "country": "UK",
     "topic": "语言",
@@ -135,32 +252,36 @@
     "note": "bar 既是“酒吧”也是“横杆”。"
   },
   {
-    "id": 17,
-    "text": "Parallel lines have so much in common. It's a shame they'll never meet.",
+    "id": 28,
+    "setup": "Parallel lines have so much in common.",
+    "punch": "It's a shame they'll never meet.",
     "lang": "en",
     "country": "US",
     "topic": "数学",
     "date": "2026-10-23"
   },
   {
-    "id": 18,
-    "text": "I'd tell you a chemistry joke, but I know I wouldn't get a reaction.",
+    "id": 29,
+    "setup": "I'd tell you a chemistry joke,",
+    "punch": "but I know I wouldn't get a reaction.",
     "lang": "en",
     "country": "US",
     "topic": "科学",
     "date": "2026-10-23"
   },
   {
-    "id": 19,
-    "text": "Did you hear about the claustrophobic astronaut?\nHe just needed a little space.",
+    "id": 30,
+    "setup": "Did you hear about the claustrophobic astronaut?",
+    "punch": "He just needed a little space.",
     "lang": "en",
     "country": "UK",
     "topic": "科学",
     "date": "2026-10-24"
   },
   {
-    "id": 20,
-    "text": "What do you call a fish with no eyes?\nA fsh.",
+    "id": 31,
+    "setup": "What do you call a fish with no eyes?",
+    "punch": "A fsh.",
     "lang": "en",
     "country": "US",
     "topic": "动物",
@@ -168,8 +289,9 @@
     "note": "eyes ≈ i's，没有 i 的 fish。"
   },
   {
-    "id": 21,
-    "text": "Why did the scarecrow win an award?\nHe was outstanding in his field.",
+    "id": 32,
+    "setup": "Why did the scarecrow win an award?",
+    "punch": "He was outstanding in his field.",
     "lang": "en",
     "country": "US",
     "topic": "职业",
@@ -177,34 +299,18 @@
     "note": "outstanding in his field：既是“在他的领域很杰出”，也是“站在他的田里”。"
   },
   {
-    "id": 22,
-    "text": "I'm on a seafood diet. I see food and I eat it.",
+    "id": 33,
+    "setup": "I'm on a seafood diet.",
+    "punch": "I see food and I eat it.",
     "lang": "en",
     "country": "UK",
     "topic": "食物",
     "date": "2026-10-26"
   },
   {
-    "id": 23,
-    "text": "布団が吹っ飛んだ。",
-    "lang": "ja",
-    "country": "JP",
-    "topic": "语言",
-    "date": "2026-10-27",
-    "note": "futon ga futtonda，“被子飞走了”。日语谐音冷笑话（ダジャレ）的代表作。"
-  },
-  {
-    "id": 24,
-    "text": "Was macht ein Clown im Büro?\nFaxen.",
-    "lang": "de",
-    "country": "DE",
-    "topic": "职业",
-    "date": "2026-10-27",
-    "note": "Faxen 既是“发传真”也是“胡闹”。"
-  },
-  {
-    "id": 25,
-    "text": "Pourquoi les poissons détestent l'ordinateur ?\nIls ont peur du net.",
+    "id": 34,
+    "setup": "Pourquoi les poissons détestent l'ordinateur ?",
+    "punch": "Ils ont peur du net.",
     "lang": "fr",
     "country": "FR",
     "topic": "动物",
@@ -212,12 +318,13 @@
     "note": "net 既是“网络”也是“渔网”。"
   },
   {
-    "id": 26,
-    "text": "¿Qué le dice un jaguar a otro jaguar?\nJaguar you.",
-    "lang": "es",
-    "country": "ES",
+    "id": 35,
+    "setup": "Qu'est-ce qu'un chat qui fait du ski ?",
+    "punch": "Un chat alpin.",
+    "lang": "fr",
+    "country": "FR",
     "topic": "动物",
-    "date": "2026-10-27",
-    "note": "Jaguar you ≈ How are you。"
+    "date": "2026-10-28",
+    "note": "chat alpin ≈ Chaplin（卓别林）。"
   }
 ]
